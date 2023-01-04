@@ -9,22 +9,47 @@ class Onboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 3),
-      color: MyTheme.containerColor,
-      child: Column(children: [
-        ClipRRect(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight: Radius.circular(25)),
-          child: Image.network(
-            "https://i.pinimg.com/originals/c5/d6/c0/c5d6c0eae34ae8bb69533bc7872308ad.jpg",
-            height: 660
+    return Material(
+      child: SafeArea(
+          child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        color: MyTheme.containerColor,
+        child: Column(children: [
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(25),
+                    bottomRight: Radius.circular(25)),
+                child: Image.network(
+                    "https://i.pinimg.com/564x/43/55/5b/43555b402856950a9454a54d28fc990d.jpg",
+                    height: 660),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal:8.0),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 520,
+                    ),
+                    Text(
+                      "Welcome To the Sociolite",maxLines: 2,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: MyTheme.text3,
+                          fontSize: 35),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        CustomButton1(text: "Next")
-      ]),
-    ));
+          SizedBox(
+            height: 15,
+          ),
+          CustomButton1(text: "Next")
+        ]),
+      )),
+    );
   }
 }
