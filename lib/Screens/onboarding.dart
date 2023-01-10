@@ -56,7 +56,7 @@ class _OnboardingState extends State<Onboarding> {
           ),
           GestureDetector(
             child: CustomButton1(text: "Next"),
-            onTap: () =>  Navigator.pushReplacementNamed(context, MyRoutes.homeRoute) ,
+            onTap: () =>  Navigator.pushReplacementNamed(context, MyRoutes.logIn) ,
           )
         ]),
       )),

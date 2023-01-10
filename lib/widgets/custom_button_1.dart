@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:sociolite/utils/themes.dart';
 
 class CustomButton1 extends StatelessWidget {
-  final String text; 
+  final String text;
   const CustomButton1({
     Key? key,
     required this.text,
@@ -41,3 +41,5 @@ class CustomButton1 extends StatelessWidget {
     );
   }
 }
+
+

@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:sociolite/Screens/home.dart';
+import 'package:sociolite/Screens/login.dart';
 import 'package:sociolite/Screens/onboarding.dart';
+import 'package:sociolite/Screens/signup.dart';
 import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
 
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
       routes: {
         MyRoutes.homeRoute: (context) => Home(),
         MyRoutes.onboarding: (context) => Onboarding(),
+        MyRoutes.signUp: (context) => SignUp(),
+        MyRoutes.logIn: (context) => LoginPage(),
       },
     );
   }
