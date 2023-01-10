@@ -6,7 +6,7 @@ class MyTheme {
       );
 
   static Color red = Colors.red;
-  static Color primary = Color.fromARGB(184, 10, 131, 96);
+  static Color primary = Color(0xFF529A80);
   static Color text1 = Colors.black;
   static Color text2 = Colors.grey;
   static Color text3 = Colors.white;

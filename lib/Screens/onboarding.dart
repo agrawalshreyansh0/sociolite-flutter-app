@@ -1,12 +1,18 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/custom_button_1.dart';
 
-class Onboarding extends StatelessWidget {
+class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
 
+  @override
+  State<Onboarding> createState() => _OnboardingState();
+}
+
+class _OnboardingState extends State<Onboarding> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -26,14 +32,15 @@ class Onboarding extends StatelessWidget {
                     height: 660),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal:8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
                   children: [
                     SizedBox(
                       height: 520,
                     ),
                     Text(
-                      "Welcome To the Sociolite",maxLines: 2,
+                      "Welcome To the Sociolite",
+                      maxLines: 2,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: MyTheme.text3,
@@ -47,9 +54,14 @@ class Onboarding extends StatelessWidget {
           SizedBox(
             height: 15,
           ),
-          CustomButton1(text: "Next")
+          GestureDetector(
+            child: CustomButton1(text: "Next"),
+            onTap: () =>  Navigator.pushReplacementNamed(context, MyRoutes.homeRoute) ,
+          )
         ]),
       )),
     );
   }
+
+  
 }
