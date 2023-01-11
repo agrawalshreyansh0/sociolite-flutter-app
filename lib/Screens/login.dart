@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
+import 'package:sociolite/widgets/custom_button_1.dart';
 
 import 'package:sociolite/widgets/custom_layout_1.dart';
 
@@ -11,7 +12,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _email = TextEditingController();
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
 
     return Layout1(
       header: "Log In",
@@ -30,18 +32,17 @@ class LoginPage extends StatelessWidget {
           ),
           Text(
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            style: TextStyle(color: MyTheme.text2),
+            style: TextStyle(color: MyTheme.text2, fontSize: 15),
           ),
-          SizedBox(
-            height: 30,
-          ),
+          Spacer(),
           TextFormField(
             validator: (value) {
               if (value!.isEmpty) {
-                return "Name can not be empty";
+                return "Email can not be empty";
               }
+              return null;
             },
-            controller: _email,
+            controller: email,
             cursorColor: Colors.black,
             style: TextStyle(height: 1),
             decoration: InputDecoration(
@@ -75,10 +76,11 @@ class LoginPage extends StatelessWidget {
           TextFormField(
             validator: (value) {
               if (value!.isEmpty) {
-                return "Name can not be empty";
+                return "Password can not be empty";
               }
+              return null;
             },
-            controller: _email,
+            controller: password,
             cursorColor: Colors.black,
             style: TextStyle(height: 1),
             decoration: InputDecoration(
@@ -106,8 +108,79 @@ class LoginPage extends StatelessWidget {
                   fontWeight: FontWeight.bold, color: MyTheme.primary),
             ),
           ),
+          Spacer(),
+          GestureDetector(
+            onTap: (() {
+              login(context);
+            }),
+            child: CustomButton1(
+              text: 'LogIn',
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: Text(
+              "Forgot the password?",
+              style: TextStyle(
+                  fontSize: 15,
+                  color: MyTheme.primary,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Spacer(),
+          Row(
+            children: [
+              Expanded(
+                  child: Divider(
+                color: MyTheme.grey,
+                endIndent: 20,
+              )),
+              Text(
+                "or continue with",
+                style: TextStyle(fontSize: 16),
+              ),
+              Expanded(
+                  child: Divider(
+                color: MyTheme.grey,
+                indent: 20,
+              )),
+            ],
+          ),
+          Spacer(),
+          CustomButton1(text: 'Login with google'),
+          Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Don't have an account?",
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, MyRoutes.signUp);
+                },
+                child: Text(
+                  " Sign Up",
+                  style: TextStyle(
+                      color: MyTheme.primary,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+              )
+            ],
+          ),
+          Spacer()
         ],
       ),
     );
   }
+}
+
+login(BuildContext context) {
+  Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
 }

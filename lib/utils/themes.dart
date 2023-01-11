@@ -7,7 +7,6 @@ class MyTheme {
       appBarTheme: AppBarTheme(backgroundColor: primary, elevation: 0),
       textTheme: GoogleFonts.latoTextTheme());
 
-  static Color red = Colors.red;
   static Color primary = Color(0xFF529A80);
   static Color text1 = Colors.black;
   static Color text2 = Colors.grey;
@@ -15,5 +14,7 @@ class MyTheme {
   static Color containerColor = Colors.white;
   static Color icon1 = Colors.white;
   static Color icon2 = Colors.grey;
-  static Color grey = Colors.grey; 
+  static Color grey = Colors.grey;
+  static Color black = Colors.black;
+  static Color white = Colors.white; 
 }
