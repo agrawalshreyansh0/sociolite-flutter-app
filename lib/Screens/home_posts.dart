@@ -1,22 +1,44 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:sociolite/utils/themes.dart';
 
 class Posts extends StatelessWidget {
   const Posts({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Spacer(),
-        Center(
-          child: Text("Hey at Posts page "),
-        ),
-        Spacer()
-      ],
+    return SafeArea(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Text(
+                "Sociolite",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: MyTheme.primary),
+              ),
+              Spacer(),
+              Icon(
+                Icons.add,
+                size: 30,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Icon(
+                Icons.notifications_none_rounded,
+                size: 30,
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

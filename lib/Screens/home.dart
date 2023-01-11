@@ -35,9 +35,9 @@ class _HomeState extends State<Home> {
       child: Scaffold(
           body: Container(
             margin: EdgeInsets.only(bottom: 10),
-            padding: EdgeInsets.symmetric(horizontal: 25),
+            padding: EdgeInsets.symmetric(horizontal: 15),
             decoration: BoxDecoration(
-              color: MyTheme.containerColor,
+              color: MyTheme.containerColorSecondary,
               borderRadius: BorderRadius.only(
                 bottomRight: Radius.circular(40.0),
                 bottomLeft: Radius.circular(40.0),
