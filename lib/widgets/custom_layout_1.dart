@@ -18,7 +18,8 @@ class Layout1 extends StatelessWidget {
     return Material(
         child: Scaffold(
       backgroundColor: MyTheme.primary,
-      appBar: AppBar(centerTitle: true,
+      appBar: AppBar(
+        centerTitle: true,
         title: Text(
           header,
           style: TextStyle(fontWeight: FontWeight.bold),

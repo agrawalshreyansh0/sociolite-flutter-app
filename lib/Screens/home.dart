@@ -1,15 +1,71 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sociolite/Screens/home_messages.dart';
+import 'package:sociolite/Screens/home_posts.dart';
+import 'package:sociolite/Screens/home_profile.dart';
+import 'package:sociolite/Screens/home_search.dart';
+import 'package:sociolite/utils/themes.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int _selectedIndex = 0;
+  static const List<Widget> _widgetOptions = <Widget>[
+    Posts(),
+    Messages(),
+    Search(),
+    Profile(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Material(
       child: Scaffold(
-        body: Container(child: Center(child: Text("Home Page"),),),
-      ),
+          body: Container(
+            margin: EdgeInsets.only(bottom: 10),
+            padding: EdgeInsets.symmetric(horizontal: 25),
+            decoration: BoxDecoration(
+              color: MyTheme.containerColor,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(40.0),
+                bottomLeft: Radius.circular(40.0),
+              ),
+            ),
+            child: _widgetOptions.elementAt(_selectedIndex),
+          ),
+          backgroundColor: MyTheme.primary,
+          bottomNavigationBar: BottomNavigationBar(
+            elevation: 0,
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: MyTheme.icon1,
+            unselectedItemColor: MyTheme.icon1,
+            showUnselectedLabels: false,
+            backgroundColor: MyTheme.primary,
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.home), label: "Home"),
+              BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.text_bubble), label: "Message"),
+              BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.search), label: "Search"),
+              BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.person), label: "Profile"),
+            ],
+          )),
     );
   }
 }

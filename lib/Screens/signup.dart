@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sociolite/widgets/custom_button_1.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
-
-import '../utils/routes.dart';
 import '../utils/themes.dart';
 import 'login.dart';
 
