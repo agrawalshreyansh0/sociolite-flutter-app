@@ -18,12 +18,11 @@ class Layout1 extends StatelessWidget {
     return Material(
         child: Scaffold(
       backgroundColor: MyTheme.primary,
-      appBar: AppBar(
-        title: Center(
-            child: Text(
+      appBar: AppBar(centerTitle: true,
+        title: Text(
           header,
           style: TextStyle(fontWeight: FontWeight.bold),
-        )),
+        ),
       ),
       body: Container(
         margin: EdgeInsets.only(top: 20),
