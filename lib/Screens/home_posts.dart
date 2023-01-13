@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:sociolite/testextra/widgets/post_list.dart';
 import 'package:sociolite/utils/themes.dart';
 
 class Posts extends StatelessWidget {
@@ -36,7 +37,8 @@ class Posts extends StatelessWidget {
                 size: 30,
               )
             ],
-          )
+          ),
+          PostList()
         ],
       ),
     );

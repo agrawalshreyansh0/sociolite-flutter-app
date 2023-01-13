@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       themeMode: ThemeMode.system,
       theme: MyTheme.lightTheme(context),
-      initialRoute: MyRoutes.onboarding,
+      initialRoute: MyRoutes.homeRoute,
       routes: {
         MyRoutes.homeRoute: (context) => Home(),
         MyRoutes.onboarding: (context) => Onboarding(),
