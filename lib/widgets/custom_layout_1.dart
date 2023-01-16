@@ -20,6 +20,7 @@ class Layout1 extends StatelessWidget {
       backgroundColor: MyTheme.primary,
       appBar: AppBar(
         centerTitle: true,
+        
         title: Text(
           header,
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -29,7 +30,7 @@ class Layout1 extends StatelessWidget {
         margin: EdgeInsets.only(top: 20),
         padding: EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
-          color: MyTheme.containerColor,
+          color: MyTheme.containerColorSecondary,
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(40.0),
             topLeft: Radius.circular(40.0),

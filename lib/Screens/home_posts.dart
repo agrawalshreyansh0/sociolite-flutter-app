@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:sociolite/testextra/widgets/post_list.dart';
+import 'package:sociolite/utils/routes.dart';
+import 'package:sociolite/widgets/post_list.dart';
 import 'package:sociolite/utils/themes.dart';
 
 class Posts extends StatelessWidget {
@@ -25,9 +26,12 @@ class Posts extends StatelessWidget {
                     color: MyTheme.primary),
               ),
               Spacer(),
-              Icon(
-                Icons.add,
-                size: 30,
+              GestureDetector(
+                onTap: ()=>Navigator.pushNamed(context, MyRoutes.addPost),
+                child: Icon(
+                  Icons.add,
+                  size: 30,
+                ),
               ),
               SizedBox(
                 width: 10,

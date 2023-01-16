@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:sociolite/Screens/add_post.dart';
 import 'package:sociolite/Screens/home.dart';
 import 'package:sociolite/Screens/login.dart';
 import 'package:sociolite/Screens/onboarding.dart';
@@ -20,12 +21,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       themeMode: ThemeMode.system,
       theme: MyTheme.lightTheme(context),
-      initialRoute: MyRoutes.homeRoute,
+      debugShowCheckedModeBanner: false,
+      initialRoute: MyRoutes.logIn,
       routes: {
         MyRoutes.homeRoute: (context) => Home(),
         MyRoutes.onboarding: (context) => Onboarding(),
         MyRoutes.signUp: (context) => SignUp(),
         MyRoutes.logIn: (context) => LoginPage(),
+        MyRoutes.addPost: (context) => AddPost(),
       },
     );
   }
