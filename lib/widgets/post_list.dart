@@ -2,22 +2,24 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sociolite/assets/data/postdata.dart';
+import 'package:provider/provider.dart';
+import 'package:sociolite/providers/post_provider.dart';
 import 'package:sociolite/utils/themes.dart';
 
 import '../models/post.dart';
-
 
 class PostList extends StatelessWidget {
   const PostList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    PostsProvider postsProvider = Provider.of<PostsProvider>(context); 
+    List<Post> posts = postsProvider.getPostList(); 
     return Container(
       width: double.infinity,
       height: 620,
       child: ListView.builder(
-        itemCount: 2,
+        itemCount: posts.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             decoration: BoxDecoration(
@@ -33,14 +35,14 @@ class PostList extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       backgroundImage: NetworkImage(
-                        posts[index].userImageUrl,
+                        "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
                       ),
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     Text(
-                      posts[index].userName,
+                      posts[index].user.name.toString(),
                       style: TextStyle(fontSize: 16),
                     )
                   ],
@@ -55,7 +57,7 @@ class PostList extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(
-                        posts[index].imageUrl,
+                         "https://i.pinimg.com/236x/5b/f5/0b/5bf50b52133173e4728d58331c2813f4.jpg",
                         fit: BoxFit.fill,
                       ),
                     )),
@@ -65,7 +67,7 @@ class PostList extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                    posts[index].description,
+                    posts[index].content,
                   ),
                 ),
                 SizedBox(
@@ -106,7 +108,7 @@ class PostList extends StatelessWidget {
                     SizedBox(
                       width: 20,
                     ),
-                    Text("Liked by ${posts[index].likeCount}"),
+                    Text("Liked by 10"),
                   ],
                 )
               ],

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:sociolite/utils/routes.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -16,9 +17,11 @@ class Profile extends StatelessWidget {
               children: [
                 Spacer(),
                
-                Icon(
-                Icons.settings  ,
-                  size: 30,
+                GestureDetector(onTap:(() =>  Navigator.pushNamed(context, MyRoutes.settings))  ,
+                  child: Icon(
+                  Icons.settings  ,
+                    size: 30,
+                  ),
                 )
               ],
             )

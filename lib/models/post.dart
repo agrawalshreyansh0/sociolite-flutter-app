@@ -1,19 +1,38 @@
+import 'dart:convert';
+
+import 'package:sociolite/models/user.dart';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class Post {
-  String userName;
-  String title;
-  String imageUrl;
-  int likeCount;
-  String userImageUrl; 
-  String description;
+  String? id; 
+  User user;
+  String content;
 
   Post({
-    required this.userName,
-    required this.title,
-    required this.imageUrl,
-    required this.userImageUrl,
-    required this.likeCount,
-    required this.description,
+     this.id,
+    required this.user,
+    required this.content,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      '_id': id,
+      'user': user.toMap(),
+      'content': content,
+    };
+  }
+
+  factory Post.fromMap(Map<String, dynamic> map) {
+    return Post(
+      id: map['_id'] as String,
+      user: User.fromMap(map['user'] as Map<String,dynamic>),
+      content: map['content'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Post.fromJson(String source) =>
+      Post.fromMap(json.decode(source) as Map<String, dynamic>);
 }

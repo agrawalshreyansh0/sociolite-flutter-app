@@ -36,7 +36,7 @@ class _SignUpState extends State<SignUp> {
       return;
     }
     User newUser =
-        User(name: _name.text, email: _email.text, password: _password.text);
+        User( name: _name.text, email: _email.text, password: _password.text);
     Map response = await UserService.createUser(newUser);
     log(response.toString());
     String message = response["message"].toString();

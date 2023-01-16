@@ -22,18 +22,23 @@ class LoginPage extends StatelessWidget {
 
     void goolgeLogin() {}
 
+    void showsnackbar(String message, BuildContext context) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(message)));
+    }
+
     void login(BuildContext context) async {
       if (!_logInKey.currentState!.validate()) {
         return;
       }
       Map response = await UserService.signIn(_email.text, _password.text);
-      // ScaffoldMessenger.of(context)
-      //     .showSnackBar(SnackBar(content: response["message"].text));
+      showsnackbar(response["message"], context);
       if (response["success"]) {
         String token = response["data"]["token"];
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', token);
-        final String? newtoken = await prefs.getString('token') ??"Whatever bro" ; 
+        await prefs.setBool('isLoggedIn', true); 
         Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
       }
     }

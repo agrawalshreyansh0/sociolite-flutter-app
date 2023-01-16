@@ -4,4 +4,5 @@ class MyRoutes {
   static String signUp = "/signUp";
   static String logIn = "/login";
   static String addPost = "/addPost"; 
+  static String settings = "/settings";
 }
