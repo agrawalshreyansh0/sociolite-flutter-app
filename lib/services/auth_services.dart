@@ -11,4 +11,12 @@ class UserService {
     Map decoded = jsonDecode(response.body);
     return decoded;
   }
+
+  static Future<dynamic> signIn(String email, String password) async {
+    Uri responseUri = Uri.parse("$_baseUrl/signIn");
+    http.Response response = await http
+        .post(responseUri, body: {"email": email, "password": password});
+    Map decoded = jsonDecode(response.body);
+    return decoded;
+  }
 }
