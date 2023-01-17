@@ -10,14 +10,14 @@ class Search extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           TextFormField(
             cursorColor: Colors.black,
             decoration: InputDecoration(
               isDense: true,
-              contentPadding: EdgeInsets.all(8),
+              contentPadding: const EdgeInsets.all(8),
               hintText: 'Search',
               prefixIcon: Icon(
                 Icons.search,

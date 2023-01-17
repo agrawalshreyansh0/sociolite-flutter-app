@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:sociolite/utils/routes.dart';
@@ -10,15 +9,15 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
-        children: [SizedBox(
+        children: [const SizedBox(
               height: 20,
             ),
             Row(
               children: [
-                Spacer(),
+                const Spacer(),
                
                 GestureDetector(onTap:(() =>  Navigator.pushNamed(context, MyRoutes.settings))  ,
-                  child: Icon(
+                  child: const Icon(
                   Icons.settings  ,
                     size: 30,
                   ),

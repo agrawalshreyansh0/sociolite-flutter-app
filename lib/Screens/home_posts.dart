@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:sociolite/utils/routes.dart';
@@ -13,7 +12,7 @@ class Posts extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -25,15 +24,15 @@ class Posts extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: MyTheme.primary),
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, MyRoutes.addPost),
-                child: Icon(
+                child: const Icon(
                   Icons.add,
                   size: 30,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               GestureDetector(
@@ -41,14 +40,14 @@ class Posts extends StatelessWidget {
                   
                   Navigator.pushNamed(context, MyRoutes.notifications);
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.notifications_none_rounded,
                   size: 30,
                 ),
               )
             ],
           ),
-          PostList()
+          const PostList()
         ],
       ),
     );

@@ -8,22 +8,22 @@ class AddPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _content = new TextEditingController();
+    TextEditingController content = TextEditingController();
 
     return Layout1(
         header: 'Create New Post',
         child: SafeArea(
           child: Container(
-            margin: EdgeInsets.symmetric(
+            margin: const EdgeInsets.symmetric(
               vertical: 20,
             ),
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
                 color: MyTheme.containerColor,
                 borderRadius: BorderRadius.circular(30)),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -38,24 +38,24 @@ class AddPost extends StatelessWidget {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: Text(
-                        "Post",
-                        style: TextStyle(color: MyTheme.text3),
-                      ),
                       height: 30,
                       width: 60,
                       decoration: BoxDecoration(
                           color: MyTheme.primary,
                           borderRadius: BorderRadius.circular(5)),
+                      child: Text(
+                        "Post",
+                        style: TextStyle(color: MyTheme.text3),
+                      ),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
                   maxLines: 7,
-                  controller: _content,
+                  controller: content,
                   decoration: InputDecoration(
                     hintText: "What's on your mind?",
                     border: InputBorder.none,

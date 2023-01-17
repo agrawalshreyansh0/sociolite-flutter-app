@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'dart:developer';
 
@@ -30,7 +29,7 @@ class _SignUpState extends State<SignUp> {
     }
     if (!(_confirmPassword.text == _password.text)) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Password does not match"),
       ));
       return;
@@ -59,21 +58,21 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Text(
+                const Text(
                   "Welcome",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
                   "Create Account to keep exploring amazing destinations around the world!",
                   style: TextStyle(color: MyTheme.text2, fontSize: 15),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 TextFormField(
@@ -85,7 +84,7 @@ class _SignUpState extends State<SignUp> {
                   },
                   controller: _name,
                   cursorColor: Colors.black,
-                  style: TextStyle(height: 1),
+                  style: const TextStyle(height: 1),
                   decoration: InputDecoration(
                     hintText: "Enter your full name",
                     prefixIcon: Icon(
@@ -119,7 +118,7 @@ class _SignUpState extends State<SignUp> {
                         fontWeight: FontWeight.bold, color: MyTheme.primary),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -137,7 +136,7 @@ class _SignUpState extends State<SignUp> {
                   },
                   cursorColor: Colors.black,
                   controller: _email,
-                  style: TextStyle(height: 1),
+                  style: const TextStyle(height: 1),
                   decoration: InputDecoration(
                     hintText: "Enter your Email address",
                     prefixIcon: Icon(
@@ -171,7 +170,7 @@ class _SignUpState extends State<SignUp> {
                         fontWeight: FontWeight.bold, color: MyTheme.primary),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -183,7 +182,7 @@ class _SignUpState extends State<SignUp> {
                   },
                   controller: _password,
                   cursorColor: Colors.black,
-                  style: TextStyle(height: 1),
+                  style: const TextStyle(height: 1),
                   decoration: InputDecoration(
                     hintText: "Enter password",
                     prefixIcon: Icon(
@@ -217,7 +216,7 @@ class _SignUpState extends State<SignUp> {
                         fontWeight: FontWeight.bold, color: MyTheme.primary),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -229,7 +228,7 @@ class _SignUpState extends State<SignUp> {
                   },
                   controller: _confirmPassword,
                   cursorColor: Colors.black,
-                  style: TextStyle(height: 1),
+                  style: const TextStyle(height: 1),
                   decoration: InputDecoration(
                     hintText: "Confirm Your password",
                     prefixIcon: Icon(
@@ -263,24 +262,24 @@ class _SignUpState extends State<SignUp> {
                         fontWeight: FontWeight.bold, color: MyTheme.primary),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
                 GestureDetector(
                   onTap: (() {
                     createUserAccount(context);
                   }),
-                  child: CustomButton1(
+                  child: const CustomButton1(
                     text: 'Create Account',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 7,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Already have an account?",
                       style: TextStyle(
                         fontSize: 16,
@@ -300,21 +299,22 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
-                Center(
+                const Center(
                     child: Text(
                   "By creating an account, you agree to our",
                   style: TextStyle(fontSize: 15),
                 )),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Terms & Conditions",
                       style: TextStyle(fontSize: 15, color: MyTheme.primary),
                     ),
-                    Text(
+                    const Text(
                       " and agree to ",
                       style: TextStyle(fontSize: 15),
                     ),
@@ -323,9 +323,8 @@ class _SignUpState extends State<SignUp> {
                       style: TextStyle(fontSize: 15, color: MyTheme.primary),
                     )
                   ],
-                  mainAxisAlignment: MainAxisAlignment.center,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 )
               ],

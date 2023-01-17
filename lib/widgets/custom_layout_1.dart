@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:sociolite/utils/themes.dart';
@@ -23,15 +21,15 @@ class Layout1 extends StatelessWidget {
         
         title: Text(
           header,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 20),
-        padding: EdgeInsets.symmetric(horizontal: 25),
+        margin: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
           color: MyTheme.containerColorSecondary,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(40.0),
             topLeft: Radius.circular(40.0),
           ),

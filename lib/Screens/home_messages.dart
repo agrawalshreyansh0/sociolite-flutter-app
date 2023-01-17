@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,13 +10,13 @@ class Messages extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
-        // ignore: prefer_const_literals_to_create_immutables
+      
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
-            children: [
+            children: const [
               Text(
                 "Messages",
                 style: TextStyle(
@@ -33,14 +31,14 @@ class Messages extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           TextFormField(
             cursorColor: Colors.black,
             decoration: InputDecoration(
               isDense: true,
-              contentPadding: EdgeInsets.all(8),
+              contentPadding: const EdgeInsets.all(8),
               hintText: 'Search "Your Friend"',
               prefixIcon: Icon(
                 Icons.search,

@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,9 +13,9 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _email = TextEditingController();
-    TextEditingController _password = TextEditingController();
-    final _logInKey = GlobalKey<FormState>();
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
+    final logInKey = GlobalKey<FormState>();
 
     void goolgeLogin() {}
 
@@ -29,10 +26,10 @@ class LoginPage extends StatelessWidget {
     }
 
     void login(BuildContext context) async {
-      if (!_logInKey.currentState!.validate()) {
+      if (!logInKey.currentState!.validate()) {
         return;
       }
-      Map response = await UserService.signIn(_email.text, _password.text);
+      Map response = await UserService.signIn(email.text, password.text);
       showsnackbar(response["message"], context);
       if (response["success"]) {
         String token = response["data"]["token"];
@@ -47,25 +44,25 @@ class LoginPage extends StatelessWidget {
       header: "Log In",
       child: SingleChildScrollView(
         child: Form(
-          key: _logInKey,
+          key: logInKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 "Welcome",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                 style: TextStyle(color: MyTheme.text2, fontSize: 15),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 60,
               ),
               TextFormField(
@@ -81,9 +78,9 @@ class LoginPage extends StatelessWidget {
                   }
                   return null;
                 },
-                controller: _email,
+                controller: email,
                 cursorColor: Colors.black,
-                style: TextStyle(height: 1),
+                style: const TextStyle(height: 1),
                 decoration: InputDecoration(
                   hintText: "Enter your Email address",
                   prefixIcon: Icon(
@@ -117,7 +114,7 @@ class LoginPage extends StatelessWidget {
                       fontWeight: FontWeight.bold, color: MyTheme.primary),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -127,9 +124,9 @@ class LoginPage extends StatelessWidget {
                   }
                   return null;
                 },
-                controller: _password,
+                controller: password,
                 cursorColor: Colors.black,
-                style: TextStyle(height: 1),
+                style: const TextStyle(height: 1),
                 decoration: InputDecoration(
                   hintText: "Enter password",
                   prefixIcon: Icon(
@@ -163,18 +160,18 @@ class LoginPage extends StatelessWidget {
                       fontWeight: FontWeight.bold, color: MyTheme.primary),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 45,
               ),
               GestureDetector(
                 onTap: (() {
                   login(context);
                 }),
-                child: CustomButton1(
+                child: const CustomButton1(
                   text: 'LogIn',
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Center(
@@ -186,7 +183,7 @@ class LoginPage extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Row(
@@ -196,7 +193,7 @@ class LoginPage extends StatelessWidget {
                     color: MyTheme.grey,
                     endIndent: 20,
                   )),
-                  Text(
+                  const Text(
                     "or continue with",
                     style: TextStyle(fontSize: 16),
                   ),
@@ -207,7 +204,7 @@ class LoginPage extends StatelessWidget {
                   )),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Center(
@@ -216,7 +213,7 @@ class LoginPage extends StatelessWidget {
                     goolgeLogin();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     height: 50,
                     width: 70,
                     decoration: BoxDecoration(
@@ -228,13 +225,13 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Don't have an account?",
                     style: TextStyle(
                       fontSize: 16,
@@ -255,7 +252,7 @@ class LoginPage extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               )
             ],

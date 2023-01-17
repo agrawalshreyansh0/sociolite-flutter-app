@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sociolite/Screens/home_messages.dart';
@@ -34,11 +33,11 @@ class _HomeState extends State<Home> {
     return Material(
       child: Scaffold(
           body: Container(
-            margin: EdgeInsets.only(bottom: 10),
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            margin: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             decoration: BoxDecoration(
               color: MyTheme.containerColorSecondary,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomRight: Radius.circular(40.0),
                 bottomLeft: Radius.circular(40.0),
               ),
@@ -55,7 +54,7 @@ class _HomeState extends State<Home> {
             backgroundColor: MyTheme.primary,
             currentIndex: _selectedIndex,
             onTap: _onItemTapped,
-            items: [
+            items: const [
               BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.home), label: "Home"),
               BottomNavigationBarItem(

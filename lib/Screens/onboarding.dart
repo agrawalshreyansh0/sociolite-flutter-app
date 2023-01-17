@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:sociolite/utils/routes.dart';
@@ -18,13 +17,13 @@ class _OnboardingState extends State<Onboarding> {
     return Material(
       child: SafeArea(
           child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         color: MyTheme.containerColor,
         child: Column(children: [
           Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(25),
                     bottomRight: Radius.circular(25)),
                 child: Image.network(
@@ -35,7 +34,7 @@ class _OnboardingState extends State<Onboarding> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 520,
                     ),
                     Text(
@@ -51,11 +50,11 @@ class _OnboardingState extends State<Onboarding> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           GestureDetector(
-            child: CustomButton1(text: "Next"),
+            child: const CustomButton1(text: "Next"),
             onTap: () =>  Navigator.pushReplacementNamed(context, MyRoutes.logIn) ,
           )
         ]),

@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class PostList extends StatelessWidget {
   Widget build(BuildContext context) {
     PostsProvider postsProvider = Provider.of<PostsProvider>(context);
     List<Post> posts = postsProvider.getPostList();
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 620,
       child: ListView.builder(
@@ -27,29 +26,29 @@ class PostList extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               color: MyTheme.containerColor,
             ),
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       backgroundImage: NetworkImage(
                         "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
                       posts[index].user.name.toString(),
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     )
                   ],
                 ),
                 Container(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 20,
                       vertical: 10,
                     ),
@@ -62,36 +61,36 @@ class PostList extends StatelessWidget {
                         fit: BoxFit.fill,
                       ),
                     )),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     posts[index].content,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
-                  // ignore: prefer_const_literals_to_create_immutables
+           
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
-                    Icon(
+                    const Icon(
                       CupertinoIcons.heart,
                       color: Colors.red,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text("Like"),
-                    SizedBox(
+                    const Text("Like"),
+                    const SizedBox(
                       width: 20,
                     ),
                     GestureDetector(
@@ -100,7 +99,7 @@ class PostList extends StatelessWidget {
                         Navigator.pushNamed(context, MyRoutes.comments,
                             arguments: posts[index].id)
                       },
-                      child: Row(children: [
+                      child: Row(children: const [
                         Icon(CupertinoIcons.text_bubble),
                         SizedBox(
                           width: 5,
@@ -110,11 +109,11 @@ class PostList extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 20,
                     ),

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,7 +9,6 @@ import 'package:sociolite/Screens/notifications.dart';
 import 'package:sociolite/Screens/onboarding.dart';
 import 'package:sociolite/Screens/settings.dart';
 import 'package:sociolite/Screens/signup.dart';
-import 'package:sociolite/providers/comment_provider.dart';
 import 'package:sociolite/providers/post_provider.dart';
 import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
@@ -34,22 +31,21 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PostsProvider()),
-        ChangeNotifierProvider(create: (context)=>CommentProvider()),
       ],
       child: MaterialApp(
         themeMode: ThemeMode.system,
         theme: MyTheme.lightTheme(context),
         debugShowCheckedModeBanner: false,
-        initialRoute: isLoggedIn ? MyRoutes.homeRoute : MyRoutes.logIn,
+        initialRoute: isLoggedIn ? MyRoutes.homeRoute : MyRoutes.onboarding,
         routes: {
-          MyRoutes.homeRoute: (context) => Home(),
-          MyRoutes.onboarding: (context) => Onboarding(),
-          MyRoutes.signUp: (context) => SignUp(),
-          MyRoutes.logIn: (context) => LoginPage(),
-          MyRoutes.addPost: (context) => AddPost(),
-          MyRoutes.settings: (context) => Settings(),
-          MyRoutes.comments: (context) => Comments(),
-          MyRoutes.notifications: (context) => Notifications(),
+          MyRoutes.homeRoute: (context) => const Home(),
+          MyRoutes.onboarding: (context) => const Onboarding(),
+          MyRoutes.signUp: (context) => const SignUp(),
+          MyRoutes.logIn: (context) => const LoginPage(),
+          MyRoutes.addPost: (context) => const AddPost(),
+          MyRoutes.settings: (context) => const Settings(),
+          MyRoutes.comments: (context) => const Comments(),
+          MyRoutes.notifications: (context) => const Notifications(),
         },
       ),
     );
