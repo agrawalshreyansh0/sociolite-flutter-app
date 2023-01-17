@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/providers/post_provider.dart';
+import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
 
 import '../models/post.dart';
@@ -13,8 +14,8 @@ class PostList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PostsProvider postsProvider = Provider.of<PostsProvider>(context); 
-    List<Post> posts = postsProvider.getPostList(); 
+    PostsProvider postsProvider = Provider.of<PostsProvider>(context);
+    List<Post> posts = postsProvider.getPostList();
     return Container(
       width: double.infinity,
       height: 620,
@@ -57,7 +58,7 @@ class PostList extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(
-                         "https://i.pinimg.com/236x/5b/f5/0b/5bf50b52133173e4728d58331c2813f4.jpg",
+                        "https://i.pinimg.com/236x/5b/f5/0b/5bf50b52133173e4728d58331c2813f4.jpg",
                         fit: BoxFit.fill,
                       ),
                     )),
@@ -93,11 +94,17 @@ class PostList extends StatelessWidget {
                     SizedBox(
                       width: 20,
                     ),
-                    Icon(CupertinoIcons.text_bubble),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text("Comment"),
+                    GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, MyRoutes.comments),
+                      child: Row(children: [
+                        Icon(CupertinoIcons.text_bubble),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text("Comment"),
+                      ]),
+                    )
                   ],
                 ),
                 SizedBox(

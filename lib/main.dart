@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sociolite/Screens/add_post.dart';
+import 'package:sociolite/Screens/comments.dart';
 import 'package:sociolite/Screens/home.dart';
 import 'package:sociolite/Screens/login.dart';
+import 'package:sociolite/Screens/notifications.dart';
 import 'package:sociolite/Screens/onboarding.dart';
 import 'package:sociolite/Screens/settings.dart';
 import 'package:sociolite/Screens/signup.dart';
@@ -44,6 +46,8 @@ class MyApp extends StatelessWidget {
           MyRoutes.logIn: (context) => LoginPage(),
           MyRoutes.addPost: (context) => AddPost(),
           MyRoutes.settings: (context) => Settings(),
+          MyRoutes.comments: (context) => Comments(),
+          MyRoutes.notifications: (context) => Notifications(),
         },
       ),
     );

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sociolite/utils/themes.dart';
 
@@ -55,7 +54,8 @@ class AddPost extends StatelessWidget {
                   height: 20,
                 ),
                 TextFormField(
-                  maxLines: 7,controller: _content,
+                  maxLines: 7,
+                  controller: _content,
                   decoration: InputDecoration(
                     hintText: "What's on your mind?",
                     border: InputBorder.none,
