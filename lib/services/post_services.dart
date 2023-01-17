@@ -12,7 +12,6 @@ class PostService {
     Uri responseUri = Uri.parse("$_baseUrl/allPosts");
     var response = await http.get(responseUri);
     Map decoded = jsonDecode(response.body);
-
     var decodedposts = decoded["posts"];
     log(decodedposts.toString());
     List<Post> posts = [];

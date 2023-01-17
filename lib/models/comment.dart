@@ -1,36 +1,34 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
-import 'package:sociolite/models/post.dart';
 import 'package:sociolite/models/user.dart';
 
 class Comment {
   String? id;
   String content;
   User user;
-  Post post;
+  String postId;
   Comment({
     this.id,
     required this.content,
     required this.user,
-    required this.post,
+    required this.postId,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      '_id': id,
+      'id': id,
       'content': content,
       'user': user.toMap(),
-      'post': post.toMap(),
+      'postId': postId,
     };
   }
 
   factory Comment.fromMap(Map<String, dynamic> map) {
     return Comment(
-      id: map['_id'] as String,
+      id: map['id'] != null ? map['id'] as String : null,
       content: map['content'] as String,
-      user: User.fromMap(map['user'] as Map<String, dynamic>),
-      post: Post.fromMap(map['post'] as Map<String, dynamic>),
+      user: User.fromMap(map['user'] as Map<String,dynamic>),
+      postId: map['post'] as String,
     );
   }
 

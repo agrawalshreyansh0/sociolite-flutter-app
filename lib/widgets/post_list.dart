@@ -95,8 +95,11 @@ class PostList extends StatelessWidget {
                       width: 20,
                     ),
                     GestureDetector(
-                      onTap: () =>
-                          Navigator.pushNamed(context, MyRoutes.comments),
+                      onTap: () => {
+                        
+                        Navigator.pushNamed(context, MyRoutes.comments,
+                            arguments: posts[index].id)
+                      },
                       child: Row(children: [
                         Icon(CupertinoIcons.text_bubble),
                         SizedBox(

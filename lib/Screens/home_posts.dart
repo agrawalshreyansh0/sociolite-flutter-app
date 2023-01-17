@@ -37,8 +37,10 @@ class Posts extends StatelessWidget {
                 width: 10,
               ),
               GestureDetector(
-                onTap: () =>
-                    Navigator.pushNamed(context, MyRoutes.notifications),
+                onTap: () {
+                  
+                  Navigator.pushNamed(context, MyRoutes.notifications);
+                },
                 child: Icon(
                   Icons.notifications_none_rounded,
                   size: 30,

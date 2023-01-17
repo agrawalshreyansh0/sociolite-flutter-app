@@ -11,6 +11,7 @@ import 'package:sociolite/Screens/notifications.dart';
 import 'package:sociolite/Screens/onboarding.dart';
 import 'package:sociolite/Screens/settings.dart';
 import 'package:sociolite/Screens/signup.dart';
+import 'package:sociolite/providers/comment_provider.dart';
 import 'package:sociolite/providers/post_provider.dart';
 import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PostsProvider()),
+        ChangeNotifierProvider(create: (context)=>CommentProvider()),
       ],
       child: MaterialApp(
         themeMode: ThemeMode.system,
