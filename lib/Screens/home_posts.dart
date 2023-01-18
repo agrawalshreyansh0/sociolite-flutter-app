@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:sociolite/utils/routes.dart';
-import 'package:sociolite/widgets/post_list.dart';
+import 'package:sociolite/listOrGridBuilders/post_list.dart';
 import 'package:sociolite/utils/themes.dart';
 
 class Posts extends StatelessWidget {
@@ -37,7 +36,6 @@ class Posts extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  
                   Navigator.pushNamed(context, MyRoutes.notifications);
                 },
                 child: const Icon(
@@ -47,7 +45,11 @@ class Posts extends StatelessWidget {
               )
             ],
           ),
-          const PostList()
+          const SizedBox(
+            width: double.infinity,
+            height: 620,
+            child: PostList(),
+          ),
         ],
       ),
     );

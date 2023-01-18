@@ -1,12 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:sociolite/models/user.dart';
 
-class Comment {
+class Comment with ChangeNotifier {
   String? id;
   String content;
   User user;
   String postId;
+
   Comment({
     this.id,
     required this.content,
@@ -19,15 +22,15 @@ class Comment {
       'id': id,
       'content': content,
       'user': user.toMap(),
-      'postId': postId,
+      'post': postId,
     };
   }
 
   factory Comment.fromMap(Map<String, dynamic> map) {
     return Comment(
-      id: map['id'] != null ? map['id'] as String : null,
+      id: map['_id'] != null ? map['_id'] as String : null,
       content: map['content'] as String,
-      user: User.fromMap(map['user'] as Map<String,dynamic>),
+      user: User.fromMap(map['user'] as Map<String, dynamic>),
       postId: map['post'] as String,
     );
   }

@@ -11,8 +11,10 @@ class PostsProvider with ChangeNotifier {
   }
 
   List<Post> getPostList() {
-    return posts;
+    return [...posts];
   }
+
+
 
   void fetchPosts() async {
     posts = await PostService.getAllPosts();
