@@ -10,6 +10,7 @@ class Comment with ChangeNotifier {
   User user;
   String postId;
   bool like;
+  int likesCount;
 
   Comment({
     this.id,
@@ -17,7 +18,13 @@ class Comment with ChangeNotifier {
     required this.user,
     required this.postId,
     this.like = false,
+    required this.likesCount,
   });
+
+  void toggleLikeStatus() {
+    like = !like;
+    notifyListeners();
+  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -25,12 +32,8 @@ class Comment with ChangeNotifier {
       'content': content,
       'user': user.toMap(),
       'post': postId,
+      'likesCount': likesCount,
     };
-  }
-
-  void toggleLikeStatus() {
-    like = !like;
-    notifyListeners(); 
   }
 
   factory Comment.fromMap(Map<String, dynamic> map) {
@@ -39,6 +42,7 @@ class Comment with ChangeNotifier {
       content: map['content'] as String,
       user: User.fromMap(map['user'] as Map<String, dynamic>),
       postId: map['post'] as String,
+      likesCount: map['likesCount'] as int,
     );
   }
 

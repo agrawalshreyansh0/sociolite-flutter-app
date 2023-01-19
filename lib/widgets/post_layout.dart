@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -100,11 +101,17 @@ class PostLayout extends StatelessWidget {
             ],
           ),
           Row(
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 width: 30,
               ),
-              Text("Liked by 15"),
+              Text(
+                "Liked by ${post.likesCount}",
+                style: TextStyle(
+                  color: MyTheme.text2,
+                  fontSize: 13,
+                ),
+              ),
             ],
           ),
         ],
