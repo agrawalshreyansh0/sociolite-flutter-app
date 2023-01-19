@@ -1,43 +1,109 @@
+// ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sociolite/Screens/add_post.dart';
 import 'package:sociolite/models/comment.dart';
 import 'package:sociolite/providers/post_provider.dart';
+import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/comment_layout.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
 
-class Comments extends StatelessWidget {
+import '../models/user.dart';
+
+class Comments extends StatefulWidget {
   const Comments({super.key});
 
   @override
+  State<Comments> createState() => _CommentsState();
+}
+
+class _CommentsState extends State<Comments> {
+  String? userId;
+  String? userName;
+
+  TextEditingController _commentController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    getdata();
+  }
+
+  getdata() async {
+    final prefs = await SharedPreferences.getInstance();
+    userId = await prefs.getString("userId");
+    userName = await prefs.getString("userName");
+  }
+
+  addComment(String postId) {
+    User thisUser = User(name: userName.toString(), id: userId.toString());
+    Comment newComment = Comment(
+        content: _commentController.text, user: thisUser, postId: postId);
+    Provider.of<PostsProvider>(context, listen: false).addcomment(newComment,postId);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    log("reloaded the list"); 
     final postId = ModalRoute.of(context)!.settings.arguments;
-    final loadedPost = Provider.of<PostsProvider>(context,listen: false)
+    final loadedPost = Provider.of<PostsProvider>(context)
         .posts
         .firstWhere((post) => post.id == postId);
     final comments = loadedPost.comments;
     return Layout1(
       header: "Comments",
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 10,
+      child: SingleChildScrollView(
+        child: Container(height: 700,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 600,
+                child: ListView.builder(
+                  itemCount: comments.length,
+                  itemBuilder: (context, index) {
+                    final Comment comment = comments[index];
+                    return ChangeNotifierProvider.value(
+                      value: comment,
+                      child: const CommentLayout(),
+                    );
+                  },
+                ),
+              ),
+         Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    child: TextField(
+                      controller: _commentController,
+                      decoration: InputDecoration(hintText: "Add a comment..."),
+                    ),
+                    width: 240,
+                  ),
+                  IconButton(
+                    onPressed: () => addComment(postId.toString()),
+                    icon: Icon(
+                      Icons.send_rounded,
+                      color: MyTheme.primary,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              )
+            ],
           ),
-          SizedBox(
-            height: 200,
-            child: ListView.builder(
-              itemCount: comments.length,
-              itemBuilder: (context, index) {
-                final Comment comment = comments[index];
-                return ChangeNotifierProvider.value(
-                  value: comment,
-                  child: const CommentLayout(),
-                );
-              },
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

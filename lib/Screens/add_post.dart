@@ -16,7 +16,7 @@ class AddPost extends StatefulWidget {
 
 String? userName;
 String? userId;
-TextEditingController contentController = TextEditingController();
+TextEditingController _contentController = TextEditingController();
 
 class _AddPostState extends State<AddPost> {
   @override
@@ -33,8 +33,8 @@ class _AddPostState extends State<AddPost> {
   }
 
   createPost(BuildContext context) {
-    log(contentController.text); 
-    Provider.of<PostsProvider>(context,listen: false).addPost(userId.toString(),contentController.text); 
+    log(_contentController.text); 
+    Provider.of<PostsProvider>(context,listen: false).addPost(userId.toString(),_contentController.text); 
     Navigator.pushNamed(context, MyRoutes.homeRoute); 
   }
 
@@ -91,7 +91,7 @@ class _AddPostState extends State<AddPost> {
                   TextFormField(
                     maxLines: 15,
                     maxLength: 200,
-                    controller: contentController,
+                    controller: _contentController,
                     decoration: InputDecoration(
                       hintText: "What's on your mind?",
                       border: InputBorder.none,

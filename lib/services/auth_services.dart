@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import '../models/user.dart';
 
 class UserService {
   static const String _baseUrl = "https://sociolite.cyclic.app/auth/";
 
-  static Future<dynamic> createUser(User user) async {
+  static Future<dynamic> createUser(
+      String email, String password, String name) async {
     Uri responseUri = Uri.parse("$_baseUrl/createUser");
-    http.Response response = await http.post(responseUri, body: user.toMap());
+    http.Response response = await http.post(responseUri,
+        body: {"email": email, "password": password, "name": name});
     Map decoded = jsonDecode(response.body);
     return decoded;
   }
@@ -21,4 +22,5 @@ class UserService {
     log(decoded.toString());
     return decoded;
   }
+
 }

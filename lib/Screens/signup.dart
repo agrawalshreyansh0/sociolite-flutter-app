@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
@@ -34,9 +33,8 @@ class _SignUpState extends State<SignUp> {
       ));
       return;
     }
-    User newUser =
-        User( name: _name.text, email: _email.text, password: _password.text);
-    Map response = await UserService.createUser(newUser);
+    Map response =
+        await UserService.createUser(_email.text, _password.text, _name.text);
     log(response.toString());
     String message = response["message"].toString();
     ScaffoldMessenger.of(context).hideCurrentSnackBar();

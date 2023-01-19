@@ -6,10 +6,11 @@ class MyTheme {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
         appBarTheme: AppBarTheme(backgroundColor: primary, elevation: 0),
         textTheme: GoogleFonts.latoTextTheme(),
+        primaryColor: primary,
       );
 
   static Color primary = Color(0xFF529A80);
-  // cyan , indigo, 
+  // cyan , indigo,
   // static Color primary =Colors.indigo;
   static Color text1 = Colors.black;
   static Color text2 = Colors.grey;

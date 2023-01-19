@@ -18,7 +18,7 @@ class Comment with ChangeNotifier {
     required this.user,
     required this.postId,
     this.like = false,
-    required this.likesCount,
+     this.likesCount = 0,
   });
 
   void toggleLikeStatus() {
