@@ -47,7 +47,7 @@ class Posts extends StatelessWidget {
           ),
           const SizedBox(
             width: double.infinity,
-            height: 620,
+            height: 640,
             child: PostList(),
           ),
         ],

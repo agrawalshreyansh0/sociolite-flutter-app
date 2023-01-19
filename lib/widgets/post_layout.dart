@@ -64,9 +64,6 @@ class PostLayout extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          const SizedBox(
-            height: 10,
-          ),
           Row(
             children: [
               const SizedBox(
@@ -102,13 +99,10 @@ class PostLayout extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(
-            height: 5,
-          ),
           Row(
             children: const [
               SizedBox(
-                width: 20,
+                width: 30,
               ),
               Text("Liked by 15"),
             ],

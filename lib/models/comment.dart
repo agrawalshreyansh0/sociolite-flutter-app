@@ -9,12 +9,14 @@ class Comment with ChangeNotifier {
   String content;
   User user;
   String postId;
+  bool like;
 
   Comment({
     this.id,
     required this.content,
     required this.user,
     required this.postId,
+    this.like = false,
   });
 
   Map<String, dynamic> toMap() {
@@ -24,6 +26,11 @@ class Comment with ChangeNotifier {
       'user': user.toMap(),
       'post': postId,
     };
+  }
+
+  void toggleLikeStatus() {
+    like = !like;
+    notifyListeners(); 
   }
 
   factory Comment.fromMap(Map<String, dynamic> map) {

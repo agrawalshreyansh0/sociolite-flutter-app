@@ -23,7 +23,7 @@ class Post with ChangeNotifier {
 
   void toggleLikeStatus() {
     like = !like;
-    notifyListeners(); 
+    notifyListeners();
   }
 
   Map<String, dynamic> toMap() {
@@ -32,6 +32,7 @@ class Post with ChangeNotifier {
       'user': user.toMap(),
       'content': content,
       'comments': comments.map((x) => x.toMap()).toList(),
+   
     };
   }
 
