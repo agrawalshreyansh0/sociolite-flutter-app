@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import '../models/user.dart';
 
@@ -17,6 +18,7 @@ class UserService {
     http.Response response = await http
         .post(responseUri, body: {"email": email, "password": password});
     Map decoded = jsonDecode(response.body);
+    log(decoded.toString());
     return decoded;
   }
 }

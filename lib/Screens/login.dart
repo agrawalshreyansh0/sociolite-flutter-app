@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,6 +8,8 @@ import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/custom_button_1.dart';
 
 import 'package:sociolite/widgets/custom_layout_1.dart';
+
+import '../models/user.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -33,9 +36,15 @@ class LoginPage extends StatelessWidget {
       showsnackbar(response["message"], context);
       if (response["success"]) {
         String token = response["data"]["token"];
+        User currentUser =
+            User.fromMap(response["data"]["userdata"] as Map<String, dynamic>);
         final prefs = await SharedPreferences.getInstance();
+        log(currentUser.id.toString());
+        log(currentUser.name.toString());
+        await prefs.setString('userId', currentUser.id.toString());
+        await prefs.setString("userName", currentUser.name.toString());
         await prefs.setString('token', token);
-        await prefs.setBool('isLoggedIn', true); 
+        await prefs.setBool('isLoggedIn', true);
         Navigator.pushReplacementNamed(context, MyRoutes.homeRoute);
       }
     }

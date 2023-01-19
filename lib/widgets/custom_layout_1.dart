@@ -26,7 +26,7 @@ class Layout1 extends StatelessWidget {
       ),
       body: Container(
         margin: const EdgeInsets.only(top: 20),
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.only(right: 25,left: 25,top: 7),
         decoration: BoxDecoration(
           color: MyTheme.containerColorSecondary,
           borderRadius: const BorderRadius.only(

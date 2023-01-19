@@ -25,7 +25,7 @@ class Comments extends StatelessWidget {
             height: 10,
           ),
           SizedBox(
-            height: 670,
+            height: 200,
             child: ListView.builder(
               itemCount: comments.length,
               itemBuilder: (context, index) {

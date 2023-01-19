@@ -13,13 +13,21 @@ class PostService {
     var response = await http.get(responseUri);
     Map decoded = jsonDecode(response.body);
     var decodedposts = decoded["posts"];
-    log(decodedposts.toString());
+    log(decoded.toString());
     List<Post> posts = [];
     for (var postMap in decodedposts) {
       Post newPost = Post.fromMap(postMap);
       posts.add(newPost);
     }
-
     return posts;
+  }
+
+  static Future<void> addPost(String userId, String content) async {
+    Uri responseUri = Uri.parse("$_baseUrl/createPost");
+    var response = await http
+        .post(responseUri, body: {"user": userId, "content": content});
+
+    Map decoded = jsonDecode(response.body);
+    log(decoded.toString()); 
   }
 }

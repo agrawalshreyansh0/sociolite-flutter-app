@@ -14,10 +14,13 @@ class PostsProvider with ChangeNotifier {
     return [...posts];
   }
 
-
-
   void fetchPosts() async {
     posts = await PostService.getAllPosts();
     notifyListeners();
+  }
+
+  void addPost(String userId, String content) async {
+   await PostService.addPost(userId, content); 
+    fetchPosts();
   }
 }

@@ -8,9 +8,9 @@ class MyTheme {
         textTheme: GoogleFonts.latoTextTheme(),
       );
 
-  // static Color primary = Color(0xFF529A80);
+  static Color primary = Color(0xFF529A80);
   // cyan , indigo, 
-  static Color primary =Colors.indigo;
+  // static Color primary =Colors.indigo;
   static Color text1 = Colors.black;
   static Color text2 = Colors.grey;
   static Color text3 = Colors.white;
