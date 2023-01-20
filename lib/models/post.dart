@@ -1,10 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:sociolite/models/comment.dart';
 import 'package:sociolite/models/user.dart';
-
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class Post with ChangeNotifier {
   String? id;

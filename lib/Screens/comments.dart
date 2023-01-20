@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/models/comment.dart';
@@ -31,7 +30,6 @@ class _CommentsState extends State<Comments> {
 
   @override
   Widget build(BuildContext context) {
-    log("reloaded the list");
     final postId = ModalRoute.of(context)!.settings.arguments;
     final loadedPost = Provider.of<PostsProvider>(context)
         .posts

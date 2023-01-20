@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/Screens/add_post.dart';
@@ -36,7 +35,6 @@ class _MyAppState extends State<MyApp> {
 
   Future<Widget> verifyToken() async {
     bool isVerified = await UserService.verifyToken();
-    log(isVerified.toString());
     if (isVerified) {
       return const Home();
     } else {

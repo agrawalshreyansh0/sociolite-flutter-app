@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sociolite/Screens/home_messages.dart';
 import 'package:sociolite/Screens/home_posts.dart';
 import 'package:sociolite/Screens/home_profile.dart';
 import 'package:sociolite/Screens/home_search.dart';
 import 'package:sociolite/utils/themes.dart';
+
+import '../providers/main_user_provider.dart';
 
 
 class Home extends StatefulWidget {
@@ -30,7 +33,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    
+     Provider.of<UserProvider>(context,listen: false); 
     return Material(
       child: Scaffold(
           body: Container(

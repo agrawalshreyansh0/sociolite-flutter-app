@@ -68,9 +68,9 @@ class UserService {
 
     log(decoded.toString());
 
-    if (!decoded["success"]) {}
-    log("success if done");
-    log(decoded["data"].toString());
+    if (!decoded["success"]) {
+      //logout wala scene ::
+    }
 
     MainUser user = MainUser.fromMap(decoded["data"]);
     return user;
