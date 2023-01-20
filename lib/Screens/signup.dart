@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:sociolite/services/auth_services.dart';
 import 'package:sociolite/widgets/custom_button_1.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
-import '../models/user.dart';
 import '../utils/themes.dart';
 
 class SignUp extends StatefulWidget {

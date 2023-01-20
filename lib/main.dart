@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           MyRoutes.logIn: (context) => const LoginPage(),
           MyRoutes.addPost: (context) => const AddPost(),
           MyRoutes.settings: (context) => const Settings(),
-          MyRoutes.comments: (context) =>  Comments(),
+          MyRoutes.comments: (context) =>  const Comments(),
           MyRoutes.notifications: (context) => const Notifications(),
         },
       ),
