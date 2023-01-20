@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
@@ -9,7 +10,6 @@ import '../utils/themes.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
-
   @override
   State<SignUp> createState() => _SignUpState();
 }
@@ -34,6 +34,15 @@ class _SignUpState extends State<SignUp> {
     }
     await UserService.createUser(
         context, _email.text, _password.text, _name.text);
+  }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _email.dispose();
+    _password.dispose();
+    _confirmPassword.dispose();
+    super.dispose();
   }
 
   @override

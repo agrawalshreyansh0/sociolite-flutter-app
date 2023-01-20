@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:sociolite/models/main_user.dart';
 import 'package:sociolite/services/auth_services.dart';
@@ -23,7 +21,6 @@ class UserProvider with ChangeNotifier {
   MainUser get user => _user;
 
   void setUser(MainUser user) {
-    log("Calling set user");
     _user = user;
     notifyListeners();
   }

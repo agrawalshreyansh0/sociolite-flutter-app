@@ -1,7 +1,5 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sociolite/models/main_user.dart';
 import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/providers/post_provider.dart';
@@ -16,40 +14,25 @@ class AddPost extends StatefulWidget {
   State<AddPost> createState() => _AddPostState();
 }
 
-String? userName;
-String? userId;
 TextEditingController _contentController = TextEditingController();
 
 class _AddPostState extends State<AddPost> {
-  @override
-  void initState() {
-    super.initState();
-    getdata();
-  }
 
-  getdata() async {
-    final prefs = await SharedPreferences.getInstance();
-    userName = await prefs.getString("userName");
-    userId = await prefs.getString("userId");
-    setState(() {});
-
-    MainUser nowUser = Provider.of<UserProvider>(context).user;
-    log(nowUser.name);
-    log(nowUser.id);
-    userName = nowUser.name.toString();
-    userId = nowUser.id.toString();
-    setState(() {});
-  }
-
-  createPost(BuildContext context) {
-    log(_contentController.text);
+  createPost(BuildContext context, String userId) {
     Provider.of<PostsProvider>(context, listen: false)
         .addPost(userId.toString(), _contentController.text);
     Navigator.pushNamed(context, MyRoutes.homeRoute);
   }
 
   @override
+  void dispose() {
+    _contentController.dispose(); 
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    MainUser user = Provider.of<UserProvider>(context,listen: false).user; 
     return Layout1(
         header: 'Create New Post',
         child: SafeArea(
@@ -72,14 +55,14 @@ class _AddPostState extends State<AddPost> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        userName ?? "Shreyansh Agrawal",
+                        user.name ,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                             color: MyTheme.primary),
                       ),
                       GestureDetector(
-                        onTap: () => createPost(context),
+                        onTap: () => createPost(context,user.id),
                         child: Container(
                           alignment: Alignment.center,
                           height: 30,

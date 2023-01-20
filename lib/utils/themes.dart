@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,7 +8,7 @@ class MyTheme {
         primaryColor: primary,
       );
 
-  static Color primary = Color(0xFF529A80);
+  static Color primary = const Color(0xFF529A80);
   // cyan , indigo,
   // static Color primary =Colors.indigo;
   static Color text1 = Colors.black;

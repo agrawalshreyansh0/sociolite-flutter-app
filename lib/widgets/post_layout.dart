@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/models/post.dart';
 import 'package:sociolite/utils/themes.dart';
-
 import '../utils/routes.dart';
 
 class PostLayout extends StatelessWidget {

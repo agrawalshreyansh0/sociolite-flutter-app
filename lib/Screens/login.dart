@@ -1,13 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sociolite/services/auth_services.dart';
 import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/custom_button_1.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
-import '../models/user.dart';
 import '../providers/main_user_provider.dart';
 
 class LoginPage extends StatelessWidget {
@@ -28,7 +25,6 @@ class LoginPage extends StatelessWidget {
       await UserService.signIn(context, email.text, password.text);
     }
       Provider.of<UserProvider>(context,listen: false); 
-
     return Layout1(
       header: "Log In",
       child: SingleChildScrollView(

@@ -1,15 +1,13 @@
-
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sociolite/models/comment.dart';
+import 'package:sociolite/models/main_user.dart';
+import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/providers/post_provider.dart';
 import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/comment_layout.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
-
 import '../models/user.dart';
 
 class Comments extends StatefulWidget {
@@ -20,24 +18,11 @@ class Comments extends StatefulWidget {
 }
 
 class _CommentsState extends State<Comments> {
-  String? userId;
-  String? userName;
 
   final TextEditingController _commentController = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-    getdata();
-  }
 
-  getdata() async {
-    final prefs = await SharedPreferences.getInstance();
-    userId = await prefs.getString("userId");
-    userName = await prefs.getString("userName");
-  }
-
-  addComment(String postId) {
-    User thisUser = User(name: userName.toString(), id: userId.toString());
+  addComment(String postId, String userId, String userName) {
+    User thisUser = User(name: userName, id: userId);
     Comment newComment = Comment(
         content: _commentController.text, user: thisUser, postId: postId);
     Provider.of<PostsProvider>(context, listen: false)
@@ -120,7 +105,12 @@ class _CommentsState extends State<Comments> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () => addComment(postId.toString()),
+                    onPressed: () {
+                      MainUser user =
+                          Provider.of<UserProvider>(context, listen: false)
+                              .user;
+                      addComment(postId.toString(), user.id, user.name);
+                    },
                     icon: Icon(
                       Icons.send_rounded,
                       color: MyTheme.primary,

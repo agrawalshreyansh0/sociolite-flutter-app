@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../utils/themes.dart';
 
 class Messages extends StatelessWidget {
@@ -10,7 +9,6 @@ class Messages extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
-      
         children: [
           const SizedBox(
             height: 20,
