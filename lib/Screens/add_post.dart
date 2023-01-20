@@ -2,6 +2,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sociolite/models/main_user.dart';
+import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/providers/post_provider.dart';
 import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
@@ -30,12 +32,20 @@ class _AddPostState extends State<AddPost> {
     userName = await prefs.getString("userName");
     userId = await prefs.getString("userId");
     setState(() {});
+
+    MainUser nowUser = Provider.of<UserProvider>(context).user;
+    log(nowUser.name);
+    log(nowUser.id);
+    userName = nowUser.name.toString();
+    userId = nowUser.id.toString();
+    setState(() {});
   }
 
   createPost(BuildContext context) {
-    log(_contentController.text); 
-    Provider.of<PostsProvider>(context,listen: false).addPost(userId.toString(),_contentController.text); 
-    Navigator.pushNamed(context, MyRoutes.homeRoute); 
+    log(_contentController.text);
+    Provider.of<PostsProvider>(context, listen: false)
+        .addPost(userId.toString(), _contentController.text);
+    Navigator.pushNamed(context, MyRoutes.homeRoute);
   }
 
   @override

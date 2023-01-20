@@ -1,8 +1,6 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -77,11 +75,11 @@ class _CommentsState extends State<Comments> {
                   },
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   SizedBox(
@@ -130,7 +128,7 @@ class _CommentsState extends State<Comments> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               )
             ],

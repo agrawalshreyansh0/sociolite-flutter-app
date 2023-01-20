@@ -32,17 +32,8 @@ class _SignUpState extends State<SignUp> {
       ));
       return;
     }
-    Map response =
-        await UserService.createUser(_email.text, _password.text, _name.text);
-    log(response.toString());
-    String message = response["message"].toString();
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-    ));
-    if (response["success"]) {
-      Navigator.pop(context);
-    }
+    await UserService.createUser(
+        context, _email.text, _password.text, _name.text);
   }
 
   @override

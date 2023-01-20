@@ -2,11 +2,12 @@ import 'dart:convert';
 import 'dart:developer';
 
 import "package:http/http.dart" as http;
+import 'package:sociolite/utils/global_variables.dart';
 
 import '../models/post.dart';
 
 class PostService {
-  static const _baseUrl = "https://sociolite.cyclic.app/";
+  static const _baseUrl = "${Globals.apiUrl}/";
 
   static Future<List<Post>> getAllPosts() async {
     Uri responseUri = Uri.parse("$_baseUrl/posts/allPosts");
