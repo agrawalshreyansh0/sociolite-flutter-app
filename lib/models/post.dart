@@ -9,8 +9,9 @@ class Post with ChangeNotifier {
   String content;
   List<Comment> comments;
   bool like;
-  int commentsCount; 
-  int likesCount; 
+  int commentsCount;
+  int likesCount;
+  String? imageUrl; 
 
   Post({
     this.id,
@@ -18,8 +19,9 @@ class Post with ChangeNotifier {
     required this.content,
     required this.comments,
     this.like = false,
-    required this.commentsCount, 
+    required this.commentsCount,
     required this.likesCount,
+    this.imageUrl,
   });
 
   void toggleLikeStatus() {
@@ -35,17 +37,23 @@ class Post with ChangeNotifier {
       'comments': comments.map((x) => x.toMap()).toList(),
       'commentsCount': commentsCount,
       'likesCount': likesCount,
+      'imageUrl':imageUrl,
     };
   }
 
   factory Post.fromMap(Map<String, dynamic> map) {
     return Post(
       id: map['_id'] != null ? map['_id'] as String : null,
-      user: User.fromMap(map['user'] as Map<String,dynamic>),
+      user: User.fromMap(map['user'] as Map<String, dynamic>),
       content: map['content'] as String,
-      comments: List<Comment>.from((map['comments']).map<Comment>((x) => Comment.fromMap(x as Map<String,dynamic>),),),
+      comments: List<Comment>.from(
+        (map['comments']).map<Comment>(
+          (x) => Comment.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
       commentsCount: map['commentsCount'] as int,
       likesCount: map['likesCount'] as int,
+       imageUrl: map['imageUrl'] != null ? map['imageUrl'] as String : null,
     );
   }
 

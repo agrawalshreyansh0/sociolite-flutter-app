@@ -55,8 +55,8 @@ class PostList extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
-                  "https://i.pinimg.com/236x/5b/f5/0b/5bf50b52133173e4728d58331c2813f4.jpg",
-                  fit: BoxFit.fill,
+                 post.imageUrl.toString(),
+                  fit: BoxFit.cover,
                 ),
               )),
           const SizedBox(

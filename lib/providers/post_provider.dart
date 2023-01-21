@@ -19,8 +19,8 @@ class PostsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addPost(String userId, String content) async {
-    await PostService.addPost(userId, content);
+  void addPost(String userId, String content,String imageUrl) async {
+    await PostService.addPost(userId, content,imageUrl);
     fetchPosts();
   }
 
