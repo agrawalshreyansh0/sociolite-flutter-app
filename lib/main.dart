@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sociolite/Screens/add_post.dart';
 import 'package:sociolite/Screens/comments.dart';
 import 'package:sociolite/Screens/home.dart';
+
 import 'package:sociolite/Screens/login.dart';
 import 'package:sociolite/Screens/notifications.dart';
 import 'package:sociolite/Screens/onboarding.dart';

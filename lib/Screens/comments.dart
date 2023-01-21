@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/models/comment.dart';
@@ -17,16 +19,15 @@ class Comments extends StatefulWidget {
 }
 
 class _CommentsState extends State<Comments> {
-
   final TextEditingController _commentController = TextEditingController();
 
   addComment(String postId, String userId, String userName) {
     User thisUser = User(name: userName, id: userId);
     Comment newComment = Comment(
-        content: _commentController.text, user: thisUser, postId: postId);
+        content: _commentController.text, user: thisUser, postId: postId,likes: []);
     Provider.of<PostsProvider>(context, listen: false)
         .addcomment(newComment, postId);
-        _commentController.text = ""; 
+    _commentController.text = "";
   }
 
   @override
@@ -52,7 +53,8 @@ class _CommentsState extends State<Comments> {
                   reverse: true,
                   itemCount: comments.length,
                   itemBuilder: (context, index) {
-                    final Comment comment = comments[comments.length-1-index];
+                    final Comment comment =
+                        comments[comments.length - 1 - index];
                     return ChangeNotifierProvider.value(
                       value: comment,
                       child: const CommentLayout(),

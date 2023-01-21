@@ -26,22 +26,24 @@ class CommentLayout extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          SizedBox(
-            width: 200,
-            child: RichText(
-                text: TextSpan(children: [
-              TextSpan(
-                  text: '${comment.user.name} ',
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: comment.content),
-              TextSpan(
-                text: "\n${comment.likesCount} likes",
-                style: TextStyle(
-                  color: MyTheme.text2,
-                  fontSize: 12,
-                ),
-              )
-            ], style: TextStyle(color: MyTheme.text1, fontSize: 13))),
+          Consumer<Comment>(
+            builder: (context, value, child) => SizedBox(
+              width: 200,
+              child: RichText(
+                  text: TextSpan(children: [
+                TextSpan(
+                    text: '${comment.user.name} ',
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: comment.content),
+                TextSpan(
+                  text: "\n${comment.likesCount} likes",
+                  style: TextStyle(
+                    color: MyTheme.text2,
+                    fontSize: 12,
+                  ),
+                )
+              ], style: TextStyle(color: MyTheme.text1, fontSize: 13))),
+            ),
           ),
           const Spacer(),
           Consumer<Comment>(

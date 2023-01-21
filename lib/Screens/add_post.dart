@@ -28,9 +28,9 @@ class _AddPostState extends State<AddPost> {
 
 
   createPost(BuildContext context, String userId) async {
-    if (!imageloaded) {
+    if (!imageloaded||_contentController.text.isEmpty) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Add and image")));
+          .showSnackBar(const SnackBar(content: Text("Add and image and write the content")));
       return;
     }
     Navigator.pushNamed(context, MyRoutes.homeRoute);

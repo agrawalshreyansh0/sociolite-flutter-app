@@ -44,8 +44,6 @@ class PostService {
 
   static Future<void> toggleLike(
       String userid, String type, String elementId, String postId) async {
-    log("${userid}\n${type}\n${elementId}\n${postId}");
-
     Uri responseUri = Uri.parse("$_baseUrl/likes/toggleLike");
     var response = await http.post(responseUri, body: {
       "user": userid,
@@ -54,6 +52,6 @@ class PostService {
       "postId": postId
     });
     Map decoded = jsonDecode(response.body);
-    log(decoded.toString()); 
+    log(decoded.toString());
   }
 }

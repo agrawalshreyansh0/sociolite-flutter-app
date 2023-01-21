@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sociolite/models/main_user.dart';
 import 'package:sociolite/services/auth_services.dart';
+import 'package:sociolite/utils/global_variables.dart';
 
 class UserProvider with ChangeNotifier {
   MainUser _user = MainUser(
@@ -16,6 +17,7 @@ class UserProvider with ChangeNotifier {
   fetchUser() async {
     _user = await UserService.getUserData();
     notifyListeners(); 
+    Globals.userId = _user.id ; 
   }
 
   MainUser get user => _user;

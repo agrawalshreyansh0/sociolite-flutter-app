@@ -3,6 +3,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:sociolite/models/user.dart';
+import 'package:sociolite/services/post_services.dart';
+import 'package:sociolite/utils/global_variables.dart';
+
+import 'like.dart';
 
 class Comment with ChangeNotifier {
   String? id;
@@ -11,6 +15,7 @@ class Comment with ChangeNotifier {
   String postId;
   bool like;
   int likesCount;
+  List<Like> likes; 
 
   Comment({
     this.id,
@@ -18,12 +23,25 @@ class Comment with ChangeNotifier {
     required this.user,
     required this.postId,
     this.like = false,
-     this.likesCount = 0,
-  });
+    this.likesCount = 0,
+    required this.likes,
+  }){
+    for(int i = 0 ; i< likes.length; i++){
+      if(likes[i].user.id == Globals.userId){
+        like = true; 
+      }
+    }
+  }
 
   void toggleLikeStatus() {
     like = !like;
+    if (like) {
+      likesCount++;
+    } else {
+      likesCount--;
+    }
     notifyListeners();
+    PostService.toggleLike(Globals.userId, 'comment', id.toString(), postId);
   }
 
   Map<String, dynamic> toMap() {
@@ -43,6 +61,11 @@ class Comment with ChangeNotifier {
       user: User.fromMap(map['user'] as Map<String, dynamic>),
       postId: map['post'] as String,
       likesCount: map['likesCount'] as int,
+      likes: List<Like>.from(
+        (map['likes']).map<Like>(
+          (x) => Like.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
     );
   }
 

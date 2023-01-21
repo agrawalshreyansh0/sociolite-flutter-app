@@ -6,5 +6,5 @@ class MyRoutes {
   static String addPost = "/addPost";
   static String settings = "/settings";
   static String comments = "/comments";
-  static String notifications = "/notifications"; 
+  static String notifications = "/notifications";
 }

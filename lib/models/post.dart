@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:sociolite/models/comment.dart';
+import 'package:sociolite/models/like.dart';
 import 'package:sociolite/models/user.dart';
 import 'package:sociolite/services/post_services.dart';
+
+import '../utils/global_variables.dart';
 
 class Post with ChangeNotifier {
   String? id;
@@ -10,6 +13,7 @@ class Post with ChangeNotifier {
   String content;
   List<Comment> comments;
   bool like;
+  List<Like> likes;
   int commentsCount;
   int likesCount;
   String? imageUrl;
@@ -23,7 +27,14 @@ class Post with ChangeNotifier {
     required this.commentsCount,
     required this.likesCount,
     this.imageUrl,
-  });
+    required this.likes,
+  }) {
+    for (int i = 0; i < likes.length; i++) {
+      if (likes[i].user.id == Globals.userId) {
+        like = true; 
+      }
+    }
+  }
 
   void toggleLikeStatus() {
     like = !like;
@@ -33,7 +44,8 @@ class Post with ChangeNotifier {
       likesCount++;
     }
     notifyListeners();
-    PostService.toggleLike(user.id.toString(),'post',id.toString(),id.toString());
+    PostService.toggleLike(
+        Globals.userId, 'post', id.toString(), id.toString());
   }
 
   Map<String, dynamic> toMap() {
@@ -49,7 +61,7 @@ class Post with ChangeNotifier {
   }
 
   factory Post.fromMap(Map<String, dynamic> map) {
-    return Post(
+    Post newpost = Post(
       id: map['_id'] != null ? map['_id'] as String : null,
       user: User.fromMap(map['user'] as Map<String, dynamic>),
       content: map['content'] as String,
@@ -61,11 +73,19 @@ class Post with ChangeNotifier {
       commentsCount: map['commentsCount'] as int,
       likesCount: map['likesCount'] as int,
       imageUrl: map['imageUrl'] != null ? map['imageUrl'] as String : null,
+      likes: List<Like>.from(
+        (map['likes']).map<Like>(
+          (x) => Like.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
     );
+
+    return newpost;
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Post.fromJson(String source) =>
-      Post.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Post.fromJson(String source) {
+    return Post.fromMap(json.decode(source) as Map<String, dynamic>);
+  }
 }
