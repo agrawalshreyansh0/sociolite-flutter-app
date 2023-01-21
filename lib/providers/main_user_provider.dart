@@ -16,8 +16,8 @@ class UserProvider with ChangeNotifier {
 
   fetchUser() async {
     _user = await UserService.getUserData();
-    notifyListeners(); 
-    Globals.userId = _user.id ; 
+    notifyListeners();
+    Globals.userId = _user.id;
   }
 
   MainUser get user => _user;
@@ -25,5 +25,13 @@ class UserProvider with ChangeNotifier {
   void setUser(MainUser user) {
     _user = user;
     notifyListeners();
+  }
+
+  void updateProfile(String name, String email, String avatar) async {
+    _user.name = name;
+    _user.email = email;
+    _user.avatar = avatar;
+    notifyListeners(); 
+    await UserService.updateUserProfile(_user.id,name, email, avatar);
   }
 }

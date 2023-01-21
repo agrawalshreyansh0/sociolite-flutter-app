@@ -16,6 +16,7 @@ class Settings extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
+              onTap: () => Navigator.pushNamed(context, MyRoutes.editProfile),
               leading: Icon(
                 Icons.person_outline,
                 color: MyTheme.icon3,
@@ -105,7 +106,7 @@ class Settings extends StatelessWidget {
             ),
             const Spacer(),
             GestureDetector(
-              onTap:() =>  logout(context),
+              onTap: () => logout(context),
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(

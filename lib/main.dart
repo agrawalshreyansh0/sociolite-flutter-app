@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/Screens/add_post.dart';
 import 'package:sociolite/Screens/comments.dart';
+import 'package:sociolite/Screens/edit_profile.dart';
 import 'package:sociolite/Screens/home.dart';
 
 import 'package:sociolite/Screens/login.dart';
@@ -78,6 +79,7 @@ class _MyAppState extends State<MyApp> {
           MyRoutes.addPost: (context) => const AddPost(),
           MyRoutes.settings: (context) => const Settings(),
           MyRoutes.comments: (context) => const Comments(),
+          MyRoutes.editProfile: (context) => const EditProfile(),
           MyRoutes.notifications: (context) => const Notifications(),
         },
       ),

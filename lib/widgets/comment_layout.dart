@@ -18,9 +18,9 @@ class CommentLayout extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const CircleAvatar(
+           CircleAvatar(
             backgroundImage: NetworkImage(
-              "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+              comment.user.avatar.toString(),
             ),
           ),
           const SizedBox(

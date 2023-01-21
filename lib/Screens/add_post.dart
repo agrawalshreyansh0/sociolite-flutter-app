@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:sociolite/models/main_user.dart';
 import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/providers/post_provider.dart';
+import 'package:sociolite/utils/global_variables.dart';
 import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
@@ -43,7 +44,7 @@ class _AddPostState extends State<AddPost> {
 
   addImageToCloudinary() async {
     try {
-      final cloudinary = CloudinaryPublic('dirlbwstv', 'kdm5hqsd');
+      final cloudinary = CloudinaryPublic(Globals.cloudinaryCloudName, Globals.cloudinaryPostsImagePreset);
       CloudinaryResponse res =
           await cloudinary.uploadFile(CloudinaryFile.fromFile(image.path));
       return res.secureUrl;

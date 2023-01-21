@@ -1,13 +1,17 @@
 import 'dart:convert';
 
-class MainUser {
+import 'package:flutter/cupertino.dart';
+
+class MainUser with ChangeNotifier {
   String id;
   String name;
   String email;
+  String? avatar;
   MainUser({
     required this.id,
     required this.name,
     required this.email,
+    this.avatar
   });
 
   Map<String, dynamic> toMap() {
@@ -23,6 +27,7 @@ class MainUser {
       id: map['_id'] as String,
       name: map['name'] as String,
       email: map['email'] as String,
+      avatar: map['avatar'] as String,
     );
   }
 

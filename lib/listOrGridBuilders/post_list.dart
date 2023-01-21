@@ -31,9 +31,9 @@ class PostList extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const CircleAvatar(
+                       CircleAvatar(
                         backgroundImage: NetworkImage(
-                          "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+                         post.user.avatar.toString(),
                         ),
                       ),
                       const SizedBox(

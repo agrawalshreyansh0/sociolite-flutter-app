@@ -91,4 +91,13 @@ class UserService {
     var decoded = jsonDecode(response.body);
     return decoded["success"];
   }
+
+  static updateUserProfile(
+      String userId, String name, String email, String avatar) async {
+    Uri requestUri = Uri.parse("$_baseUrl/updateUser");
+    http.Response resonse = await http.post(requestUri,
+        body: {"id": userId, "name": name, "email": email, "avatar": avatar});
+    Map decoded = jsonDecode(resonse.body);
+    log(decoded.toString()); 
+  }
 }
