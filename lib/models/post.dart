@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:sociolite/models/comment.dart';
 import 'package:sociolite/models/user.dart';
+import 'package:sociolite/services/post_services.dart';
 
 class Post with ChangeNotifier {
   String? id;
@@ -11,7 +12,7 @@ class Post with ChangeNotifier {
   bool like;
   int commentsCount;
   int likesCount;
-  String? imageUrl; 
+  String? imageUrl;
 
   Post({
     this.id,
@@ -26,7 +27,13 @@ class Post with ChangeNotifier {
 
   void toggleLikeStatus() {
     like = !like;
+    if (!like) {
+      likesCount--;
+    } else {
+      likesCount++;
+    }
     notifyListeners();
+    PostService.toggleLike(user.id.toString(),'post',id.toString(),id.toString());
   }
 
   Map<String, dynamic> toMap() {
@@ -37,7 +44,7 @@ class Post with ChangeNotifier {
       'comments': comments.map((x) => x.toMap()).toList(),
       'commentsCount': commentsCount,
       'likesCount': likesCount,
-      'imageUrl':imageUrl,
+      'imageUrl': imageUrl,
     };
   }
 
@@ -53,7 +60,7 @@ class Post with ChangeNotifier {
       ),
       commentsCount: map['commentsCount'] as int,
       likesCount: map['likesCount'] as int,
-       imageUrl: map['imageUrl'] != null ? map['imageUrl'] as String : null,
+      imageUrl: map['imageUrl'] != null ? map['imageUrl'] as String : null,
     );
   }
 

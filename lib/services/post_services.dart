@@ -23,10 +23,11 @@ class PostService {
     return posts;
   }
 
-  static Future<void> addPost(String userId, String content, String imageUrl ) async {
+  static Future<void> addPost(
+      String userId, String content, String imageUrl) async {
     Uri responseUri = Uri.parse("$_baseUrl/posts/createPost");
-    var response = await http
-        .post(responseUri, body: {"user": userId, "content": content,"imageUrl":imageUrl});
+    var response = await http.post(responseUri,
+        body: {"user": userId, "content": content, "imageUrl": imageUrl});
 
     Map decoded = jsonDecode(response.body);
     log(decoded.toString());
@@ -39,5 +40,20 @@ class PostService {
         body: {"user": userId, "content": content, "post": postId});
     Map decoded = jsonDecode(response.body);
     log(decoded.toString());
+  }
+
+  static Future<void> toggleLike(
+      String userid, String type, String elementId, String postId) async {
+    log("${userid}\n${type}\n${elementId}\n${postId}");
+
+    Uri responseUri = Uri.parse("$_baseUrl/likes/toggleLike");
+    var response = await http.post(responseUri, body: {
+      "user": userid,
+      "type": type,
+      "id": elementId,
+      "postId": postId
+    });
+    Map decoded = jsonDecode(response.body);
+    log(decoded.toString()); 
   }
 }
