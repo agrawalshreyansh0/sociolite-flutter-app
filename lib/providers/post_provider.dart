@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:sociolite/services/post_services.dart';
 import '../models/comment.dart';
@@ -27,6 +26,7 @@ class PostsProvider with ChangeNotifier {
 
   void addcomment(Comment currentComment, String postId) async {
     Post currentpost = posts.firstWhere((post) => post.id == postId);
+    // currentpost.comments.insert(0, currentComment); 
     currentpost.comments.add(currentComment);
     notifyListeners();
     await PostService.addComment(

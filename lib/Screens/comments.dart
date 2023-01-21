@@ -26,6 +26,7 @@ class _CommentsState extends State<Comments> {
         content: _commentController.text, user: thisUser, postId: postId);
     Provider.of<PostsProvider>(context, listen: false)
         .addcomment(newComment, postId);
+        _commentController.text = ""; 
   }
 
   @override
@@ -39,18 +40,19 @@ class _CommentsState extends State<Comments> {
       header: "Comments",
       child: SingleChildScrollView(
         child: SizedBox(
-          height: 700,
+          height: 680,
           child: Column(
             children: [
               const SizedBox(
                 height: 10,
               ),
               SizedBox(
-                height: 600,
+                height: 570,
                 child: ListView.builder(
+                  reverse: true,
                   itemCount: comments.length,
                   itemBuilder: (context, index) {
-                    final Comment comment = comments[index];
+                    final Comment comment = comments[comments.length-1-index];
                     return ChangeNotifierProvider.value(
                       value: comment,
                       child: const CommentLayout(),
