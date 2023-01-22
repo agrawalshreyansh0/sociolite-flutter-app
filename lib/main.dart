@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sociolite/Screens/add_post.dart';
 import 'package:sociolite/Screens/comments.dart';
 import 'package:sociolite/Screens/edit_profile.dart';
+import 'package:sociolite/Screens/friend_requests.dart';
 import 'package:sociolite/Screens/home.dart';
 
 import 'package:sociolite/Screens/login.dart';
@@ -80,6 +81,7 @@ class _MyAppState extends State<MyApp> {
           MyRoutes.settings: (context) => const Settings(),
           MyRoutes.comments: (context) => const Comments(),
           MyRoutes.editProfile: (context) => const EditProfile(),
+          MyRoutes.friendRequests: (context) => const FriendRequests(),
           MyRoutes.notifications: (context) => const Notifications(),
         },
       ),

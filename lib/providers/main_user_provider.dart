@@ -24,6 +24,7 @@ class UserProvider with ChangeNotifier {
 
   void setUser(MainUser user) {
     _user = user;
+    Globals.userId = user.id; 
     notifyListeners();
   }
 
@@ -31,7 +32,7 @@ class UserProvider with ChangeNotifier {
     _user.name = name;
     _user.email = email;
     _user.avatar = avatar;
-    notifyListeners(); 
-    await UserService.updateUserProfile(_user.id,name, email, avatar);
+    notifyListeners();
+    await UserService.updateUserProfile(_user.id, name, email, avatar);
   }
 }

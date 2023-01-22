@@ -7,5 +7,6 @@ class MyRoutes {
   static String settings = "/settings";
   static String comments = "/comments";
   static String notifications = "/notifications";
-  static String editProfile = "/editProfile"; 
+  static String editProfile = "/editProfile";
+  static String friendRequests = "/friendRequests"; 
 }

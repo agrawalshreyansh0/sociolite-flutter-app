@@ -97,10 +97,32 @@ class Profile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                GestureDetector(onTap: (() => Navigator.pushNamed(context, MyRoutes.friendRequests)),
+                  child: Column(
+                    children: [
+                      const Text(
+                        "500",
+                        style:
+                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "Requests",
+                        style: TextStyle(color: MyTheme.text2),
+                      ),
+                    ],
+                  ),
+                ),
+                VerticalDivider(
+                  color: MyTheme.grey,
+                  thickness: 1,
+                ),
                 Column(
                   children: [
                     const Text(
-                      "500",
+                      "50",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -108,7 +130,7 @@ class Profile extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "Friends",
+                      "Posts",
                       style: TextStyle(color: MyTheme.text2),
                     ),
                   ],
