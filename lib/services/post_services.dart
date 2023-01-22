@@ -28,7 +28,6 @@ class PostService {
     Uri responseUri = Uri.parse("$_baseUrl/posts/createPost");
     var response = await http.post(responseUri,
         body: {"user": userId, "content": content, "imageUrl": imageUrl});
-
     Map decoded = jsonDecode(response.body);
     log(decoded.toString());
   }

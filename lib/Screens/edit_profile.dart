@@ -48,14 +48,14 @@ class _EditProfileState extends State<EditProfile> {
     if (!_formKey.currentState!.validate()) return;
     if (!imageloaded) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Add User Profile")));
+          .showSnackBar(const SnackBar(content: Text("Add User Profile")));
       return;
     }
     String imageUrl = await uploadImageToCloudinary();
-    Provider.of<UserProvider>(context,listen: false).updateProfile(_nameController.text,_emailController.text,imageUrl.toString()); 
+   await Provider.of<UserProvider>(context,listen: false).updateProfile(_nameController.text,_emailController.text,imageUrl.toString()); 
+    Navigator.pop(context);
     imageloaded = false;
     Provider.of<PostsProvider>(context,listen: false).fetchPosts(); 
-    Navigator.pop(context);
   }
 
   uploadImageToCloudinary() async {

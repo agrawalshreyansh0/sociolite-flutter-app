@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/models/comment.dart';
@@ -20,10 +19,13 @@ class Comments extends StatefulWidget {
 class _CommentsState extends State<Comments> {
   final TextEditingController _commentController = TextEditingController();
 
-  addComment(String postId, String userId, String userName) {
-    User thisUser = User(name: userName, id: userId);
+  addComment(String postId, String userId, String userName, String avatar) {
+    User thisUser = User(name: userName, id: userId, avatar: avatar);
     Comment newComment = Comment(
-        content: _commentController.text, user: thisUser, postId: postId,likes: []);
+        content: _commentController.text,
+        user: thisUser,
+        postId: postId,
+        likes: []);
     Provider.of<PostsProvider>(context, listen: false)
         .addcomment(newComment, postId);
     _commentController.text = "";
@@ -110,7 +112,8 @@ class _CommentsState extends State<Comments> {
                       MainUser user =
                           Provider.of<UserProvider>(context, listen: false)
                               .user;
-                      addComment(postId.toString(), user.id, user.name);
+                      addComment(
+                          postId.toString(), user.id, user.name, user.avatar.toString());
                     },
                     icon: Icon(
                       Icons.send_rounded,

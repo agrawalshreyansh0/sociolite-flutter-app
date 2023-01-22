@@ -26,12 +26,10 @@ File image = File('');
 bool imageloaded = false;
 
 class _AddPostState extends State<AddPost> {
-
-
   createPost(BuildContext context, String userId) async {
-    if (!imageloaded||_contentController.text.isEmpty) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Add and image and write the content")));
+    if (!imageloaded || _contentController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Add and image and write the content")));
       return;
     }
     Navigator.pushNamed(context, MyRoutes.homeRoute);
@@ -44,7 +42,8 @@ class _AddPostState extends State<AddPost> {
 
   addImageToCloudinary() async {
     try {
-      final cloudinary = CloudinaryPublic(Globals.cloudinaryCloudName, Globals.cloudinaryPostsImagePreset);
+      final cloudinary = CloudinaryPublic(
+          Globals.cloudinaryCloudName, Globals.cloudinaryPostsImagePreset);
       CloudinaryResponse res =
           await cloudinary.uploadFile(CloudinaryFile.fromFile(image.path));
       return res.secureUrl;
@@ -119,10 +118,13 @@ class _AddPostState extends State<AddPost> {
                       height: 20,
                     ),
                     imageloaded
-                        ? Image.file(
-                            image,
-                            fit: BoxFit.cover,
-                            height: 300,
+                        ? GestureDetector(
+                            onTap: () => addImage(),
+                            child: Image.file(
+                              image,
+                              fit: BoxFit.cover,
+                              height: 300,
+                            ),
                           )
                         : DottedBorder(
                             borderType: BorderType.Rect,

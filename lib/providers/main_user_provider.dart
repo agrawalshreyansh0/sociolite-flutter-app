@@ -27,7 +27,7 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateProfile(String name, String email, String avatar) async {
+  Future<void> updateProfile(String name, String email, String avatar) async {
     _user.name = name;
     _user.email = email;
     _user.avatar = avatar;
