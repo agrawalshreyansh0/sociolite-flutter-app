@@ -35,7 +35,17 @@ class UserProvider with ChangeNotifier {
         _user.requestsRecieved!.removeAt(i);
       }
       notifyListeners();
-      FriendService.acceptRequest(senderId); 
+      FriendService.acceptRequest(senderId);
+    }
+  }
+
+  deleteFriendRequest(String senderId) {
+    for (int i = 0; i < _user.requestsRecieved!.length; i++) {
+      if (user.requestsRecieved![i].id == senderId) {
+        _user.requestsRecieved!.removeAt(i);
+      }
+      notifyListeners();
+      FriendService.deleteRequest(senderId);
     }
   }
 

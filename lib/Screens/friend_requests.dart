@@ -43,8 +43,9 @@ class FriendRequests extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: MyTheme.primary,
                   child: IconButton(
-                      onPressed: () => Provider.of<UserProvider>(context,listen: false)
-                          .acceptFriendRequest(user.id.toString()),
+                      onPressed: () =>
+                          Provider.of<UserProvider>(context, listen: false)
+                              .acceptFriendRequest(user.id.toString()),
                       icon: Icon(
                         Icons.check,
                         color: MyTheme.icon1,
@@ -56,7 +57,9 @@ class FriendRequests extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: Colors.red,
                   child: IconButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          Provider.of<UserProvider>(context, listen: false)
+                              .deleteFriendRequest(user.id.toString()),
                       icon: Icon(
                         Icons.clear,
                         color: MyTheme.icon1,
