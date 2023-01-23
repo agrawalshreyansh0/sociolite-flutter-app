@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sociolite/models/main_user.dart';
 import 'package:sociolite/services/auth_services.dart';
+import 'package:sociolite/services/friend_services.dart';
 import 'package:sociolite/utils/global_variables.dart';
 
 class UserProvider with ChangeNotifier {
@@ -24,8 +25,18 @@ class UserProvider with ChangeNotifier {
 
   void setUser(MainUser user) {
     _user = user;
-    Globals.userId = user.id; 
+    Globals.userId = user.id;
     notifyListeners();
+  }
+
+  acceptFriendRequest(String senderId) {
+    for (int i = 0; i < _user.requestsRecieved!.length; i++) {
+      if (user.requestsRecieved![i].id == senderId) {
+        _user.requestsRecieved!.removeAt(i);
+      }
+      notifyListeners();
+      FriendService.acceptRequest(senderId); 
+    }
   }
 
   Future<void> updateProfile(String name, String email, String avatar) async {

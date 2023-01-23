@@ -100,8 +100,8 @@ class Profile extends StatelessWidget {
                 GestureDetector(onTap: (() => Navigator.pushNamed(context, MyRoutes.friendRequests)),
                   child: Column(
                     children: [
-                      const Text(
-                        "500",
+                       Text(
+                        user.requestsRecieved!.length.toString(),
                         style:
                             TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
