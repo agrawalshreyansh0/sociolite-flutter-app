@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:sociolite/utils/global_variables.dart';
 import 'package:http/http.dart' as http;
@@ -8,7 +9,9 @@ class FriendService {
 
   static Future<void> acceptRequest(String senderId) async {
     Uri requestUri = Uri.parse('$_baseUrl/acceptRequest');
-    await http.post(requestUri,
+    http.Response response = await http.post(requestUri,
         body: {"senderId": senderId, "recieverId": Globals.userId});
+    Map decoded = jsonDecode(response.body);
+    log(decoded.toString()); 
   }
 }

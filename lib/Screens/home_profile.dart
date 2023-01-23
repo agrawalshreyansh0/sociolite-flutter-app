@@ -103,7 +103,7 @@ class Profile extends StatelessWidget {
                        Text(
                         user.requestsRecieved!.length.toString(),
                         style:
-                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
                         height: 8,

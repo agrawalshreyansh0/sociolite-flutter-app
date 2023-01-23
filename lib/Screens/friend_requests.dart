@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-import 'package:sociolite/models/main_user.dart';
 import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
@@ -21,12 +17,13 @@ class FriendRequests extends StatelessWidget {
         itemBuilder: (context, index) {
           var user = requests[index];
           return Container(
-            padding: EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 20),
             child: Row(
               children: [
                 CircleAvatar(
                   backgroundImage: NetworkImage(user.avatar.toString()),
                 ),
+                // ignore: prefer_const_constructors
                 SizedBox(
                   width: 20,
                 ),
@@ -42,17 +39,18 @@ class FriendRequests extends StatelessWidget {
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 CircleAvatar(
                   backgroundColor: MyTheme.primary,
                   child: IconButton(
-                      onPressed: () {},
+                      onPressed: () => Provider.of<UserProvider>(context,listen: false)
+                          .acceptFriendRequest(user.id.toString()),
                       icon: Icon(
                         Icons.check,
                         color: MyTheme.icon1,
                       )),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 CircleAvatar(
