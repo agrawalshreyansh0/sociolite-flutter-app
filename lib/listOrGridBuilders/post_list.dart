@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ class PostList extends StatelessWidget {
       itemCount: posts.length,
       itemBuilder: (BuildContext context, int index) {
         Post post = posts[posts.length - index - 1];
+  
         return ChangeNotifierProvider.value(
             value: post,
             child: Container(
@@ -31,9 +33,9 @@ class PostList extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                       CircleAvatar(
+                      CircleAvatar(
                         backgroundImage: NetworkImage(
-                         post.user.avatar.toString(),
+                          post.user.avatar.toString(),
                         ),
                       ),
                       const SizedBox(

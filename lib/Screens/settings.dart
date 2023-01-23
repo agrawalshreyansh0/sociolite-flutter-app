@@ -39,6 +39,7 @@ class Settings extends StatelessWidget {
               trailing: const Icon(CupertinoIcons.right_chevron),
             ),
             ListTile(
+              onTap: () => Navigator.pushNamed(context, MyRoutes.friends),
               leading: Icon(
                 Icons.person_add_alt,
                 color: MyTheme.icon3,

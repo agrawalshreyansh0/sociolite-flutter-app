@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-class User {
+import 'package:flutter/cupertino.dart';
+
+class User with ChangeNotifier {
   String? id;
   String name;
   String? avatar;

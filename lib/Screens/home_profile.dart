@@ -97,63 +97,80 @@ class Profile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                GestureDetector(onTap: (() => Navigator.pushNamed(context, MyRoutes.friendRequests)),
-                  child: Column(
-                    children: [
-                       Text(
-                        user.requestsRecieved!.length.toString(),
-                        style:
-                            const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        "Requests",
-                        style: TextStyle(color: MyTheme.text2),
-                      ),
-                    ],
+                GestureDetector(
+                  onTap: (() =>
+                      Navigator.pushNamed(context, MyRoutes.friendRequests)),
+                  child: SizedBox(
+                    height: 60,
+                    width: 80,
+                    child: Column(
+                      children: [
+                        Text(
+                          user.requestsRecieved!.length.toString(),
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          "Requests",
+                          style: TextStyle(color: MyTheme.text2),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 VerticalDivider(
                   color: MyTheme.grey,
                   thickness: 1,
                 ),
-                Column(
-                  children: [
-                    const Text(
-                      "50",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, MyRoutes.friends),
+                  child: SizedBox(
+                    height: 60,
+                    width: 80,
+                    child: Column(
+                      children: [
+                        Text(
+                          user.friends!.length.toString(),
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          "Friends",
+                          style: TextStyle(color: MyTheme.text2),
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "Posts",
-                      style: TextStyle(color: MyTheme.text2),
-                    ),
-                  ],
+                  ),
                 ),
                 VerticalDivider(
                   color: MyTheme.grey,
                   thickness: 1,
                 ),
-                Column(
-                  children: [
-                    const Text(
-                      "50",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "Posts",
-                      style: TextStyle(color: MyTheme.text2),
-                    ),
-                  ],
+                SizedBox(
+                  height: 60,
+                  width: 80,
+                  child: Column(
+                    children: [
+                      const Text(
+                        "50",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "Posts",
+                        style: TextStyle(color: MyTheme.text2),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
