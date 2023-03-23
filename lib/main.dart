@@ -7,7 +7,6 @@ import 'package:sociolite/Screens/edit_profile.dart';
 import 'package:sociolite/Screens/friend_requests.dart';
 import 'package:sociolite/Screens/friends.dart';
 import 'package:sociolite/Screens/home.dart';
-
 import 'package:sociolite/Screens/login.dart';
 import 'package:sociolite/Screens/notifications.dart';
 import 'package:sociolite/Screens/onboarding.dart';

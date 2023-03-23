@@ -30,10 +30,9 @@ class FriendService {
   static Future<MainUser> getUserFromId(String userId) async {
     Uri requestUri = Uri.parse("$_baseUrl/getProfile");
     http.Response response = await http.post(requestUri, body: {"id": userId});
-    Map decoded = jsonDecode(response.body); 
-    log(decoded['data'].toString()); 
-    return decoded["data"]; 
+    Map decoded = jsonDecode(response.body);
+    log(decoded.toString());
+    MainUser user = MainUser.fromMap(decoded['data']);
+    return user;
   }
-
-  
 }
