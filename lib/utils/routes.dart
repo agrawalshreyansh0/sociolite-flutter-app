@@ -9,5 +9,6 @@ class MyRoutes {
   static String notifications = "/notifications";
   static String editProfile = "/editProfile";
   static String friendRequests = "/friendRequests";
+  static String anotherUserProfile = "/anotherUserProfile"; 
   static String friends = "/friends";
 }

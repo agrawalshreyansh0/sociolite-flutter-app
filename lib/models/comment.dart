@@ -1,11 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:sociolite/models/user.dart';
 import 'package:sociolite/services/post_services.dart';
 import 'package:sociolite/utils/global_variables.dart';
-
 import 'like.dart';
 
 class Comment with ChangeNotifier {

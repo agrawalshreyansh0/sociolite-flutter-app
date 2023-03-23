@@ -5,10 +5,8 @@ import 'package:sociolite/utils/themes.dart';
 
 class CustomButton1 extends StatelessWidget {
   final String text;
-  const CustomButton1({
-    Key? key,
-    required this.text,
-  }) : super(key: key);
+
+  const CustomButton1({Key? key,required this.text,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
