@@ -5,6 +5,8 @@ import '../models/post.dart';
 
 class PostsProvider with ChangeNotifier {
   List<Post> posts = [];
+  int page = 1;
+  int limit = 1; 
 
   PostsProvider() {
     fetchPosts();
@@ -15,18 +17,18 @@ class PostsProvider with ChangeNotifier {
   }
 
   void fetchPosts() async {
-    posts = await PostService.getAllPosts();
+    posts = await PostService.getAllPosts(page,limit);
     notifyListeners();
   }
 
-  void addPost(String userId, String content,String imageUrl) async {
-    await PostService.addPost(userId, content,imageUrl);
+  void addPost(String userId, String content, String imageUrl) async {
+    await PostService.addPost(userId, content, imageUrl);
     fetchPosts();
   }
 
   void addcomment(Comment currentComment, String postId) async {
     Post currentpost = posts.firstWhere((post) => post.id == postId);
-    // currentpost.comments.insert(0, currentComment); 
+    // currentpost.comments.insert(0, currentComment);
     currentpost.comments.add(currentComment);
     notifyListeners();
     await PostService.addComment(

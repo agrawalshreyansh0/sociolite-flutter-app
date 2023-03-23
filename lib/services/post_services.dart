@@ -9,9 +9,15 @@ import '../models/post.dart';
 class PostService {
   static const _baseUrl = "${Globals.apiUrl}/";
 
-  static Future<List<Post>> getAllPosts() async {
-    Uri responseUri = Uri.parse("$_baseUrl/posts/allPosts");
-    var response = await http.get(responseUri);
+  static Future<List<Post>> getAllPosts(int page, int limit) async {
+    final queryParameters = {
+      'page': page,
+      'limit': limit,
+    };
+    Uri responseUri = Uri.https(_baseUrl, "/posts/allPosts", queryParameters);
+    var response = await http.get(
+      responseUri
+    );
     Map decoded = jsonDecode(response.body);
     var decodedposts = decoded["posts"];
     log(decoded.toString());
