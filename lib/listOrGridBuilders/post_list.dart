@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,18 +6,40 @@ import '../models/post.dart';
 import '../utils/routes.dart';
 import '../utils/themes.dart';
 
-class PostList extends StatelessWidget {
+class PostList extends StatefulWidget {
   const PostList({super.key});
+
+  @override
+  State<PostList> createState() => _PostListState();
+}
+
+class _PostListState extends State<PostList> {
+  final scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    scrollController.addListener(_scrollListner);
+  }
+
+  void _scrollListner() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+     Provider.of<PostsProvider>(context,listen: false).fetchPosts(); 
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     PostsProvider postsProvider = Provider.of<PostsProvider>(context);
     List<Post> posts = postsProvider.getPostList();
     return ListView.builder(
+      controller: scrollController,
       itemCount: posts.length,
       itemBuilder: (BuildContext context, int index) {
-        Post post = posts[posts.length - index - 1];
-  
+        Post post = posts[index ];
+
         return ChangeNotifierProvider.value(
             value: post,
             child: Container(

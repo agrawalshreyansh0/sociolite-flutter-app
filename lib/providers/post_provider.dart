@@ -5,8 +5,9 @@ import '../models/post.dart';
 
 class PostsProvider with ChangeNotifier {
   List<Post> posts = [];
-  int page = 1;
-  int limit = 1; 
+  List<Post> newPosts = [];
+  int page = 0;
+  int limit = 3;
 
   PostsProvider() {
     fetchPosts();
@@ -17,7 +18,10 @@ class PostsProvider with ChangeNotifier {
   }
 
   void fetchPosts() async {
-    posts = await PostService.getAllPosts(page,limit);
+    page++;
+    newPosts = await PostService.getAllPosts(limit, page);
+    posts = [...posts, ...newPosts];
+
     notifyListeners();
   }
 

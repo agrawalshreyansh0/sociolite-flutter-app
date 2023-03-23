@@ -46,7 +46,8 @@ class Friends extends StatelessWidget {
                         Flexible(
                           child: RichText(
                             text: TextSpan(
-                              style: TextStyle(overflow: TextOverflow.ellipsis),
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis),
                               children: [
                                 TextSpan(
                                   text: "${friend.name}\n",
