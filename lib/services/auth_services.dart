@@ -11,6 +11,8 @@ import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/utils/global_variables.dart';
 import 'package:sociolite/utils/routes.dart';
 
+import '../models/user.dart';
+
 class UserService {
   static const String _baseUrl = "${Globals.apiUrl}/auth/";
 
@@ -98,6 +100,22 @@ class UserService {
     http.Response resonse = await http.post(requestUri,
         body: {"id": userId, "name": name, "email": email, "avatar": avatar});
     Map decoded = jsonDecode(resonse.body);
-    log(decoded.toString()); 
+    log(decoded.toString());
+  }
+
+  //implement complete part
+  static getUsersList(int limit, int page, String key) async {
+    Uri requestUri =
+        Uri.parse("$_baseUrl/allUsers?key=$key&page=$page&limit=$limit");
+    http.Response response = await http.get(requestUri);
+    Map decoded = jsonDecode(response.body);
+    log(decoded.toString());
+    List<User> users = [];
+    var decodedUsers = decoded['data'];
+    for (var userMap in decodedUsers) {
+      User newUser = User.fromMap(userMap);
+      users.add(newUser);
+    }
+    return users; 
   }
 }

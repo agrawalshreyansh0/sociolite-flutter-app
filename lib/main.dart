@@ -15,6 +15,7 @@ import 'package:sociolite/Screens/settings.dart';
 import 'package:sociolite/Screens/signup.dart';
 import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/providers/post_provider.dart';
+import 'package:sociolite/providers/search_provider.dart';
 import 'package:sociolite/services/auth_services.dart';
 import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
@@ -55,6 +56,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => PostsProvider()),
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
       ],
       child: MaterialApp(
         themeMode: ThemeMode.system,

@@ -39,7 +39,6 @@ class _PostListState extends State<PostList> {
       itemCount: posts.length,
       itemBuilder: (BuildContext context, int index) {
         Post post = posts[index ];
-
         return ChangeNotifierProvider.value(
             value: post,
             child: Container(

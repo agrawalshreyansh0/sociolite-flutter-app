@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sociolite/listOrGridBuilders/search_list.dart';
 
 import '../utils/themes.dart';
 
@@ -43,6 +44,11 @@ class Search extends StatelessWidget {
                   fontWeight: FontWeight.bold, color: MyTheme.primary),
             ),
           ),
+          const SizedBox(
+            width: double.infinity,
+            height: 620,
+            child: SearchUserList(),
+          )
         ],
       ),
     );

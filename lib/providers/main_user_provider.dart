@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sociolite/models/main_user.dart';
+import 'package:sociolite/models/user.dart';
 import 'package:sociolite/services/auth_services.dart';
 import 'package:sociolite/services/friend_services.dart';
 import 'package:sociolite/utils/global_variables.dart';
@@ -32,6 +33,8 @@ class UserProvider with ChangeNotifier {
   acceptFriendRequest(String senderId) {
     for (int i = 0; i < _user.requestsRecieved!.length; i++) {
       if (user.requestsRecieved![i].id == senderId) {
+        User tempUser = user.requestsRecieved![i];
+        _user.friends!.add(tempUser); 
         _user.requestsRecieved!.removeAt(i);
       }
       notifyListeners();
