@@ -35,4 +35,13 @@ class FriendService {
     MainUser user = MainUser.fromMap(decoded['data']);
     return user;
   }
+
+  static Future<void> sendRequest(String id) async {
+    String senderId = Globals.userId;
+    Uri requestUri = Uri.parse("$_baseUrl/sendRequest");
+    http.Response response = await http
+        .post(requestUri, body: {'senderId': senderId, 'recieverId': id});
+    Map decoded = jsonDecode(response.body);
+    log(decoded.toString()); 
+  }
 }

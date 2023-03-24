@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/models/main_user.dart';
+import 'package:sociolite/models/user.dart';
 import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/services/friend_services.dart';
+import 'package:sociolite/utils/routes.dart';
 import '../../utils/global_variables.dart';
 import '../../utils/themes.dart';
 import '../../widgets/custom_layout_1.dart';
@@ -16,6 +18,8 @@ class AnotherUserProfile extends StatefulWidget {
 
 class _AnotherUserProfileState extends State<AnotherUserProfile> {
   bool fetch = false;
+  bool mainuser = false;
+  bool isfriend = false;
   MainUser user = MainUser(
       id: 'fdsadf', name: 'Shreyansh', email: 'ashreyansh47@gmail.com');
 
@@ -28,17 +32,40 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
     }
   }
 
-  fetchUserId() {}
+  _sendFriendRequest(String id) async {
+    isfriend = true;
+    setState(() {});
+    await FriendService.sendRequest(id);
+  }
+
+  _unfriendUser(String id) async {
+    isfriend = false;
+    setState(() {});
+    // TODO: Api call to un
+   
+  }
 
   @override
   Widget build(BuildContext context) {
     var userid = ModalRoute.of(context)!.settings.arguments;
     if (userid == Globals.userId) {
-      fetch = true;   
+      fetch = true;
+      mainuser = true;
       user = Provider.of<UserProvider>(context, listen: false).user;
     } else {
       fetchUserData(userid.toString());
     }
+
+    List<User>? friends =
+        Provider.of<UserProvider>(context, listen: false).user.friends;
+
+    for (int i = 0; i < friends!.length; i++) {
+      var friend = friends[i];
+      if (friend.id == user.id) {
+        isfriend = true;
+      }
+    }
+
     return fetch
         ? Layout1(
             header: " ",
@@ -84,6 +111,75 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                           const SizedBox(
                             height: 10,
                           ),
+                          mainuser
+                              ?
+                              // it is main user
+                              GestureDetector(
+                                  onTap: () => Navigator.pushNamed(
+                                      context, MyRoutes.editProfile),
+                                  child: Container(
+                                    height: 30,
+                                    width: 60,
+                                    decoration: BoxDecoration(
+                                        color: MyTheme.primary,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: Center(
+                                      child: Text(
+                                        "Edit",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: MyTheme.text3,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : isfriend
+                                  ?
+                                  //it is a friend of the main user
+                                  GestureDetector(
+                                      onTap: () => _unfriendUser(user.id),
+                                      child: Container(
+                                        height: 30,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                            color: MyTheme.primary,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: Center(
+                                          child: Text(
+                                            "Unfriend",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: MyTheme.text3,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  :
+                                  // it is not a friend of the main user
+                                  GestureDetector(
+                                      onTap: () => _sendFriendRequest(user.id),
+                                      child: Container(
+                                        height: 30,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                            color: MyTheme.primary,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: Center(
+                                          child: Text(
+                                            "Add Friend",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: MyTheme.text3,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ),
+                                    )
                         ],
                       )
                     ],
