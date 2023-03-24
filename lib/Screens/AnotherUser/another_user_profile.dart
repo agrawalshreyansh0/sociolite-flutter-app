@@ -28,156 +28,165 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
     }
   }
 
-  fetchUserId(){
-
-  }
+  fetchUserId() {}
 
   @override
   Widget build(BuildContext context) {
     var userid = ModalRoute.of(context)!.settings.arguments;
-    if(userid == Globals.userId ){
-      user = Provider.of<UserProvider>(context,listen: false).user; 
-    }else{
-    fetchUserData(userid.toString());
+    if (userid == Globals.userId) {
+      fetch = true;   
+      user = Provider.of<UserProvider>(context, listen: false).user;
+    } else {
+      fetchUserData(userid.toString());
     }
-    return Layout1(
-      header: " ",
-      child: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(62),
-                        border: Border.all(color: MyTheme.primary, width: 2)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(62),
-                      child: Image.network(
-                        user.avatar.toString(),
-                        fit: BoxFit.cover,
-                        height: 120,
-                        width: 120,
-                      ),
-                    )),
-                const SizedBox(
-                  width: 15,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      user.name,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 22),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(user.email),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return fetch
+        ? Layout1(
+            header: " ",
+            child: SizedBox(
+              width: double.infinity,
+              child: Column(
                 children: [
-                  GestureDetector(
-                    onTap: (() {
-                      // Navigator.pushNamed(context, MyRoutes.friendRequests)
-                    }),
-                    child: SizedBox(
-                      height: 60,
-                      width: 80,
-                      child: Column(
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(62),
+                              border:
+                                  Border.all(color: MyTheme.primary, width: 2)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(62),
+                            child: Image.network(
+                              user.avatar.toString(),
+                              fit: BoxFit.cover,
+                              height: 120,
+                              width: 120,
+                            ),
+                          )),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            user.requestsRecieved!.length.toString(),
+                            user.name,
                             style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold, fontSize: 22),
                           ),
                           const SizedBox(
-                            height: 8,
+                            height: 10,
                           ),
-                          Text(
-                            "Requests",
-                            style: TextStyle(color: MyTheme.text2),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  VerticalDivider(
-                    color: MyTheme.grey,
-                    thickness: 1,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Navigator.pushNamed(context, MyRoutes.friends);
-                    },
-                    child: SizedBox(
-                      height: 60,
-                      width: 80,
-                      child: Column(
-                        children: [
-                          Text(
-                            user.friends!.length.toString(),
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
+                          Text(user.email),
                           const SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "Friends",
-                            style: TextStyle(color: MyTheme.text2),
+                            height: 10,
                           ),
                         ],
-                      ),
-                    ),
+                      )
+                    ],
                   ),
-                  VerticalDivider(
-                    color: MyTheme.grey,
-                    thickness: 1,
+                  const SizedBox(
+                    height: 20,
                   ),
-                  SizedBox(
-                    height: 60,
-                    width: 80,
-                    child: Column(
+                  IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Text(
-                          "50",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                        GestureDetector(
+                          onTap: (() {
+                            // Navigator.pushNamed(context, MyRoutes.friendRequests)
+                          }),
+                          child: SizedBox(
+                            height: 60,
+                            width: 80,
+                            child: Column(
+                              children: [
+                                Text(
+                                  user.requestsRecieved!.length.toString(),
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                  "Requests",
+                                  style: TextStyle(color: MyTheme.text2),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        const SizedBox(
-                          height: 8,
+                        VerticalDivider(
+                          color: MyTheme.grey,
+                          thickness: 1,
                         ),
-                        Text(
-                          "Posts",
-                          style: TextStyle(color: MyTheme.text2),
+                        GestureDetector(
+                          onTap: () {
+                            // Navigator.pushNamed(context, MyRoutes.friends);
+                          },
+                          child: SizedBox(
+                            height: 60,
+                            width: 80,
+                            child: Column(
+                              children: [
+                                Text(
+                                  user.friends!.length.toString(),
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                  "Friends",
+                                  style: TextStyle(color: MyTheme.text2),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        VerticalDivider(
+                          color: MyTheme.grey,
+                          thickness: 1,
+                        ),
+                        SizedBox(
+                          height: 60,
+                          width: 80,
+                          child: Column(
+                            children: [
+                              const Text(
+                                "50",
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "Posts",
+                                style: TextStyle(color: MyTheme.text2),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
+                  )
                 ],
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          )
+        : const Material(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+    ;
   }
 }

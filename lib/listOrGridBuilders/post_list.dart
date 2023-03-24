@@ -51,21 +51,25 @@ class _PostListState extends State<PostList> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          post.user.avatar.toString(),
+                  GestureDetector( onTap: () => Navigator.pushNamed(
+                  context, MyRoutes.anotherUserProfile,
+                  arguments: post.user.id),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            post.user.avatar.toString(),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        post.user.name.toString(),
-                        style: const TextStyle(fontSize: 16),
-                      )
-                    ],
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          post.user.name.toString(),
+                          style: const TextStyle(fontSize: 16),
+                        )
+                      ],
+                    ),
                   ),
                   Container(
                       padding: const EdgeInsets.symmetric(
