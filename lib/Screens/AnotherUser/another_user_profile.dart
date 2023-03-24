@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sociolite/models/dummy_user.dart';
 import 'package:sociolite/models/main_user.dart';
 import 'package:sociolite/models/user.dart';
 import 'package:sociolite/providers/main_user_provider.dart';
@@ -18,9 +21,11 @@ class AnotherUserProfile extends StatefulWidget {
 
 class _AnotherUserProfileState extends State<AnotherUserProfile> {
   bool fetch = false;
-  bool mainuser = false;
+  bool ismainuser = false;
   bool isfriend = false;
-  MainUser user = MainUser(
+  bool isrequestSent = false;
+  var Mainuser;
+  DummyUser user = DummyUser(
       id: 'fdsadf', name: 'Shreyansh', email: 'ashreyansh47@gmail.com');
 
   fetchUserData(String userid) async {
@@ -33,36 +38,58 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
   }
 
   _sendFriendRequest(String id) async {
-    isfriend = true;
+    isrequestSent = true;
     setState(() {});
+    user.requestsRecieved!.add(Globals.userId);
     await FriendService.sendRequest(id);
   }
 
   _unfriendUser(String id) async {
     isfriend = false;
+    isrequestSent = false;
+    Mainuser.friends!.remove(id);
     setState(() {});
-    // TODO: Api call to un
-   
+    await FriendService.unfriend(id);
+  }
+
+  _deleteFriendRequest(String id) async {
+    isrequestSent = false;
+    user.requestsRecieved!.removeWhere((id) => id == Globals.userId);
+    setState(() {});
+    await FriendService.deleteRequest(id);
   }
 
   @override
   Widget build(BuildContext context) {
     var userid = ModalRoute.of(context)!.settings.arguments;
+    // ignore: non_constant_identifier_names
+    Mainuser = Provider.of<UserProvider>(context, listen: false).user;
+
     if (userid == Globals.userId) {
       fetch = true;
-      mainuser = true;
-      user = Provider.of<UserProvider>(context, listen: false).user;
+      ismainuser = true;
     } else {
       fetchUserData(userid.toString());
     }
 
-    List<User>? friends =
-        Provider.of<UserProvider>(context, listen: false).user.friends;
+    List<User>? friends = Mainuser.friends;
 
-    for (int i = 0; i < friends!.length; i++) {
-      var friend = friends[i];
-      if (friend.id == user.id) {
-        isfriend = true;
+    if (!ismainuser) {
+      for (int i = 0; i < friends!.length; i++) {
+        var friend = friends[i];
+        if (friend.id == user.id) {
+          isfriend = true;
+          break;
+        }
+      }
+    }
+
+    if (!isfriend) {
+      for (int i = 0; i < user.requestsRecieved!.length; i++) {
+        if (user.requestsRecieved![i] == Globals.userId) {
+          isrequestSent = true;
+          break;
+        }
       }
     }
 
@@ -87,7 +114,9 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(62),
                             child: Image.network(
-                              user.avatar.toString(),
+                              ismainuser
+                                  ? Mainuser.avatar.toString()
+                                  : user.avatar.toString(),
                               fit: BoxFit.cover,
                               height: 120,
                               width: 120,
@@ -100,18 +129,18 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            user.name,
+                            ismainuser ? Mainuser.name : user.name,
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 22),
                           ),
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(user.email),
+                          Text(ismainuser ? Mainuser.name : user.email),
                           const SizedBox(
                             height: 10,
                           ),
-                          mainuser
+                          ismainuser
                               ?
                               // it is main user
                               GestureDetector(
@@ -158,28 +187,56 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                                         ),
                                       ),
                                     )
-                                  :
-                                  // it is not a friend of the main user
-                                  GestureDetector(
-                                      onTap: () => _sendFriendRequest(user.id),
-                                      child: Container(
-                                        height: 30,
-                                        width: 100,
-                                        decoration: BoxDecoration(
-                                            color: MyTheme.primary,
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: Center(
-                                          child: Text(
-                                            "Add Friend",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: MyTheme.text3,
-                                                fontWeight: FontWeight.bold),
+                                  : isrequestSent
+                                      ?
+                                      // it is not a friend of the main user and request send
+                                      GestureDetector(
+                                          onTap: () =>
+                                              _deleteFriendRequest(user.id),
+                                          child: Container(
+                                            height: 30,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                                color: MyTheme.primary,
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            child: Center(
+                                              child: Text(
+                                                "Unsend",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: MyTheme.text3,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    )
+                                        )
+                                      :
+
+                                      // it is not a friend of the main user and request not send
+                                      GestureDetector(
+                                          onTap: () =>
+                                              _sendFriendRequest(user.id),
+                                          child: Container(
+                                            height: 30,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                                color: MyTheme.primary,
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            child: Center(
+                                              child: Text(
+                                                "Add Friend",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: MyTheme.text3,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                        )
                         ],
                       )
                     ],
@@ -201,7 +258,11 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                             child: Column(
                               children: [
                                 Text(
-                                  user.requestsRecieved!.length.toString(),
+                                  ismainuser
+                                      ? Mainuser.requestsRecieved!.length
+                                          .toString()
+                                      : user.requestsRecieved!.length
+                                          .toString(),
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
@@ -231,7 +292,9 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                             child: Column(
                               children: [
                                 Text(
-                                  user.friends!.length.toString(),
+                                  ismainuser
+                                      ? Mainuser.friends!.length.toString()
+                                      : user.friends!.length.toString(),
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
@@ -283,6 +346,5 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
               child: CircularProgressIndicator(),
             ),
           );
-    ;
   }
 }

@@ -34,7 +34,7 @@ class UserProvider with ChangeNotifier {
     for (int i = 0; i < _user.requestsRecieved!.length; i++) {
       if (user.requestsRecieved![i].id == senderId) {
         User tempUser = user.requestsRecieved![i];
-        _user.friends!.add(tempUser); 
+        _user.friends!.add(tempUser);
         _user.requestsRecieved!.removeAt(i);
       }
       notifyListeners();

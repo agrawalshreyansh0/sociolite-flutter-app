@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:sociolite/models/dummy_user.dart';
 import 'package:sociolite/utils/global_variables.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,20 +20,20 @@ class FriendService {
     log(decoded.toString());
   }
 
-  static Future<void> deleteRequest(String senderId) async {
+  static Future<void> deleteRequest(String recieverId) async {
     Uri responseUri = Uri.parse('$_baseUrl/deleteRequest');
     http.Response response = await http.post(responseUri,
-        body: {"senderId": senderId, "recieverId": Globals.userId});
+        body: {"senderId": Globals.userId, "recieverId": recieverId});
     Map decoded = jsonDecode(response.body);
     log(decoded.toString());
   }
 
-  static Future<MainUser> getUserFromId(String userId) async {
+  static Future<DummyUser> getUserFromId(String userId) async {
     Uri requestUri = Uri.parse("$_baseUrl/getProfile");
     http.Response response = await http.post(requestUri, body: {"id": userId});
     Map decoded = jsonDecode(response.body);
     log(decoded.toString());
-    MainUser user = MainUser.fromMap(decoded['data']);
+    DummyUser user = DummyUser.fromMap(decoded['data']);
     return user;
   }
 
@@ -42,6 +43,15 @@ class FriendService {
     http.Response response = await http
         .post(requestUri, body: {'senderId': senderId, 'recieverId': id});
     Map decoded = jsonDecode(response.body);
-    log(decoded.toString()); 
+    log(decoded.toString());
+  }
+
+  static Future<void> unfriend(String id) async {
+    String senderId = Globals.userId;
+    Uri responseUri = Uri.parse('$_baseUrl/unfriend');
+    http.Response response = await http
+        .post(responseUri, body: {'senderId': senderId, 'recieverId': id});
+    var decoded = jsonDecode(response.body);
+    log(decoded.toString());
   }
 }

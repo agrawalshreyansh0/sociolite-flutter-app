@@ -38,7 +38,7 @@ class UserService {
     Uri responseUri = Uri.parse("$_baseUrl/signIn");
     http.Response response = await http
         .post(responseUri, body: {"email": email, "password": password});
-    Map decoded = jsonDecode(response.body);
+    var decoded = jsonDecode(response.body);
     log(decoded.toString());
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context)
