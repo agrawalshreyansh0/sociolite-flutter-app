@@ -1,8 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/models/user.dart';
 import 'package:sociolite/providers/search_provider.dart';
+
+import '../utils/routes.dart';
 
 class SearchUserList extends StatefulWidget {
   const SearchUserList({super.key});
@@ -24,7 +25,7 @@ class _SearchUserListState extends State<SearchUserList> {
     if (scrolllistController.position.pixels ==
         scrolllistController.position.maxScrollExtent) {
       Provider.of<SearchProvider>(context, listen: false).fetchUsers('');
-    } 
+    }
   }
 
   @override
@@ -32,17 +33,29 @@ class _SearchUserListState extends State<SearchUserList> {
     SearchProvider searchProvider = Provider.of<SearchProvider>(context);
     List<User> users = searchProvider.getAllUsers();
     return ListView.builder(
-      controller: scrolllistController,
+        controller: scrolllistController,
         itemCount: users.length,
         itemBuilder: (BuildContext context, int index) {
           User user = users[index];
           return ChangeNotifierProvider.value(
             value: user,
-            child: Container(
-              height: 300,
-              margin: const EdgeInsets.symmetric(vertical: 7),
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(user.name),
+            child: GestureDetector(
+              onTap: (() => Navigator.pushNamed(
+                  context, MyRoutes.anotherUserProfile,
+                  arguments: user.id)),
+              child: Container(
+                height: 200,
+                margin: const EdgeInsets.symmetric(vertical: 7),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(user.avatar.toString()),
+                    ),
+                    Text(user.name),
+                  ],
+                ),
+              ),
             ),
           );
         });

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'package:sociolite/models/main_user.dart';
-
+import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/services/friend_services.dart';
-
-import '../utils/routes.dart';
-import '../utils/themes.dart';
-import '../widgets/custom_layout_1.dart';
+import '../../utils/global_variables.dart';
+import '../../utils/themes.dart';
+import '../../widgets/custom_layout_1.dart';
 
 class AnotherUserProfile extends StatefulWidget {
   const AnotherUserProfile({super.key});
@@ -29,10 +28,18 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
     }
   }
 
+  fetchUserId(){
+
+  }
+
   @override
   Widget build(BuildContext context) {
     var userid = ModalRoute.of(context)!.settings.arguments;
+    if(userid == Globals.userId ){
+      user = Provider.of<UserProvider>(context,listen: false).user; 
+    }else{
     fetchUserData(userid.toString());
+    }
     return Layout1(
       header: " ",
       child: SizedBox(

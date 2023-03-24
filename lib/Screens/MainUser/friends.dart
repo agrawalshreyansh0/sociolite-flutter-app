@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
 
-import '../providers/main_user_provider.dart';
-import '../utils/themes.dart';
+import '../../providers/main_user_provider.dart';
+import '../../utils/themes.dart';
 
 class Friends extends StatelessWidget {
   const Friends({super.key});

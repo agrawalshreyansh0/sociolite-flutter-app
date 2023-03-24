@@ -7,7 +7,7 @@ import 'package:sociolite/providers/post_provider.dart';
 import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/comment_layout.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
-import '../models/user.dart';
+import '../../models/user.dart';
 
 class Comments extends StatefulWidget {
   const Comments({super.key});

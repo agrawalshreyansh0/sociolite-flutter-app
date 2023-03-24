@@ -1,12 +1,9 @@
-// ignore: unused_import
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sociolite/services/auth_services.dart';
+import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/custom_button_1.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
-import '../utils/themes.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -32,6 +29,9 @@ class _SignUpState extends State<SignUp> {
       ));
       return;
     }
+    _email.text = _email.text.trim(); 
+    _password.text = _password.text.trim(); 
+    _name.text = _name.text.trim(); 
     await UserService.createUser(
         context, _email.text, _password.text, _name.text);
   }

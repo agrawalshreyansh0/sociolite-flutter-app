@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/services/auth_services.dart';
 import 'package:sociolite/utils/routes.dart';
 import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/custom_button_1.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
-import '../providers/main_user_provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -22,6 +22,8 @@ class LoginPage extends StatelessWidget {
       if (!logInKey.currentState!.validate()) {
         return;
       }
+      email.text = email.text.trim(); 
+      password.text = password.text.trim(); 
       await UserService.signIn(context, email.text, password.text);
     }
       Provider.of<UserProvider>(context,listen: false); 

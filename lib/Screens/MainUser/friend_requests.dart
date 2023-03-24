@@ -5,7 +5,7 @@ import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/utils/themes.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
 
-import '../utils/routes.dart';
+import '../../utils/routes.dart';
 
 class FriendRequests extends StatelessWidget {
   const FriendRequests({super.key});

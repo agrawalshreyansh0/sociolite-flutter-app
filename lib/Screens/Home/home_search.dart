@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sociolite/listOrGridBuilders/search_list.dart';
+import 'package:sociolite/utils/themes.dart';
 
-import '../utils/themes.dart';
+
 
 class Search extends StatelessWidget {
   const Search({super.key});

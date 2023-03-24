@@ -9,8 +9,8 @@ import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/providers/post_provider.dart';
 import 'package:sociolite/utils/global_variables.dart';
 import 'package:sociolite/widgets/custom_layout_1.dart';
-import '../models/main_user.dart';
-import '../utils/themes.dart';
+import '../../models/main_user.dart';
+import '../../utils/themes.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});

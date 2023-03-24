@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../utils/themes.dart';
+import 'package:sociolite/utils/themes.dart';
 
 class Messages extends StatelessWidget {
   const Messages({super.key});
