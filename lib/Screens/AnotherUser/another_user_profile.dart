@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/models/dummy_user.dart';
-import 'package:sociolite/models/main_user.dart';
 import 'package:sociolite/models/user.dart';
 import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/services/friend_services.dart';
@@ -24,6 +21,7 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
   bool ismainuser = false;
   bool isfriend = false;
   bool isrequestSent = false;
+  // ignore: non_constant_identifier_names, prefer_typing_uninitialized_variables
   var Mainuser;
   DummyUser user = DummyUser(
       id: 'fdsadf', name: 'Shreyansh', email: 'ashreyansh47@gmail.com');
@@ -85,7 +83,12 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
     }
 
     if (!isfriend) {
-      for (int i = 0; i < user.requestsRecieved!.length; i++) {
+      for (int i = 0;
+          i <
+              (user.requestsRecieved == null
+                  ? 0
+                  : user.requestsRecieved!.length);
+          i++) {
         if (user.requestsRecieved![i] == Globals.userId) {
           isrequestSent = true;
           break;
@@ -140,45 +143,25 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                           const SizedBox(
                             height: 10,
                           ),
-                          ismainuser
-                              ?
-                              // it is main user
-                              GestureDetector(
-                                  onTap: () => Navigator.pushNamed(
-                                      context, MyRoutes.editProfile),
-                                  child: Container(
-                                    height: 30,
-                                    width: 60,
-                                    decoration: BoxDecoration(
-                                        color: MyTheme.primary,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    child: Center(
-                                      child: Text(
-                                        "Edit",
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color: MyTheme.text3,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : isfriend
+                          Row(
+                            children: [
+                              ismainuser
                                   ?
-                                  //it is a friend of the main user
+
+                                  // it is main user
                                   GestureDetector(
-                                      onTap: () => _unfriendUser(user.id),
+                                      onTap: () => Navigator.pushNamed(
+                                          context, MyRoutes.editProfile),
                                       child: Container(
                                         height: 30,
-                                        width: 100,
+                                        width: 60,
                                         decoration: BoxDecoration(
                                             color: MyTheme.primary,
                                             borderRadius:
                                                 BorderRadius.circular(15)),
                                         child: Center(
                                           child: Text(
-                                            "Unfriend",
+                                            "Edit",
                                             style: TextStyle(
                                                 fontSize: 15,
                                                 color: MyTheme.text3,
@@ -187,12 +170,11 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                                         ),
                                       ),
                                     )
-                                  : isrequestSent
+                                  : isfriend
                                       ?
-                                      // it is not a friend of the main user and request send
+                                      //it is a friend of the main user
                                       GestureDetector(
-                                          onTap: () =>
-                                              _deleteFriendRequest(user.id),
+                                          onTap: () => _unfriendUser(user.id),
                                           child: Container(
                                             height: 30,
                                             width: 100,
@@ -202,7 +184,7 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                                                     BorderRadius.circular(15)),
                                             child: Center(
                                               child: Text(
-                                                "Unsend",
+                                                "Unfriend",
                                                 style: TextStyle(
                                                     fontSize: 15,
                                                     color: MyTheme.text3,
@@ -212,33 +194,84 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                                             ),
                                           ),
                                         )
-                                      :
+                                      : isrequestSent
+                                          ?
+                                          // it is not a friend of the main user and request send
+                                          GestureDetector(
+                                              onTap: () =>
+                                                  _deleteFriendRequest(user.id),
+                                              child: Container(
+                                                height: 30,
+                                                width: 100,
+                                                decoration: BoxDecoration(
+                                                    color: MyTheme.primary,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15)),
+                                                child: Center(
+                                                  child: Text(
+                                                    "Unsend",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: MyTheme.text3,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          :
 
-                                      // it is not a friend of the main user and request not send
-                                      GestureDetector(
-                                          onTap: () =>
-                                              _sendFriendRequest(user.id),
-                                          child: Container(
-                                            height: 30,
-                                            width: 100,
-                                            decoration: BoxDecoration(
-                                                color: MyTheme.primary,
-                                                borderRadius:
-                                                    BorderRadius.circular(15)),
-                                            child: Center(
-                                              child: Text(
-                                                "Add Friend",
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: MyTheme.text3,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                          // it is not a friend of the main user and request not send
+                                          GestureDetector(
+                                              onTap: () =>
+                                                  _sendFriendRequest(user.id),
+                                              child: Container(
+                                                height: 30,
+                                                width: 100,
+                                                decoration: BoxDecoration(
+                                                    color: MyTheme.primary,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15)),
+                                                child: Center(
+                                                  child: Text(
+                                                    "Add Friend",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: MyTheme.text3,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
                                               ),
                                             ),
+                              const SizedBox(width: 15),
+
+                              // icon to reach to the chat page. 
+                              ismainuser
+                                  ? Container()
+                                  : GestureDetector(
+                                      onTap: () =>Navigator.pushNamed(context, MyRoutes.chat, arguments: user),
+                                      child: Container(
+                                        height: 30,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                            color: MyTheme.primary,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.chat,
+                                            color: MyTheme.icon1,
                                           ),
-                                        )
+                                        ),
+                                      ),
+                                    )
+                            ],
+                          ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(
@@ -259,8 +292,10 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                               children: [
                                 Text(
                                   ismainuser
-                                      ? Mainuser.requestsRecieved!.length
-                                          .toString()
+                                      ? Mainuser.requestsRecieved == null
+                                          ? "0"
+                                          : Mainuser.requestsRecieved.length
+                                              .toString()
                                       : user.requestsRecieved!.length
                                           .toString(),
                                   style: const TextStyle(
@@ -293,7 +328,9 @@ class _AnotherUserProfileState extends State<AnotherUserProfile> {
                               children: [
                                 Text(
                                   ismainuser
-                                      ? Mainuser.friends!.length.toString()
+                                      ? Mainuser.friends == null
+                                          ? "0"
+                                          : Mainuser.friends.length.toString()
                                       : user.friends!.length.toString(),
                                   style: const TextStyle(
                                       fontSize: 20,

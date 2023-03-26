@@ -74,6 +74,9 @@ class UserService {
       //logout wala scene ::
     }
 
+    Globals.userEmail = decoded['data']['email']; 
+   
+
     MainUser user = MainUser.fromMap(decoded["data"]);
     return user;
   }
@@ -116,6 +119,6 @@ class UserService {
       User newUser = User.fromMap(userMap);
       users.add(newUser);
     }
-    return users; 
+    return users;
   }
 }

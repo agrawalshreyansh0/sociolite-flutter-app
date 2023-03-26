@@ -14,18 +14,21 @@ class Messages extends StatelessWidget {
             height: 20,
           ),
           Row(
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "Messages",
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Spacer(),
-              Icon(
-                CupertinoIcons.ellipses_bubble,
-                size: 30,
+              const Spacer(),
+              GestureDetector(
+                onTap: () {},
+                child: const Icon(
+                  CupertinoIcons.add,
+                  size: 30,
+                ),
               )
             ],
           ),

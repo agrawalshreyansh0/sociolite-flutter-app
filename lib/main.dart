@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sociolite/Screens/AnotherUser/chat_page.dart';
 import 'package:sociolite/Screens/Auth/login.dart';
 import 'package:sociolite/Screens/Auth/signup.dart';
 import 'package:sociolite/Screens/Post/add_post.dart';
@@ -86,6 +87,7 @@ class _MyAppState extends State<MyApp> {
           MyRoutes.editProfile: (context) => const EditProfile(),
           MyRoutes.friendRequests: (context) => const FriendRequests(),
           MyRoutes.friends: (context) => const Friends(),
+          MyRoutes.chat: (context) => const ChatPage(),
           MyRoutes.anotherUserProfile: (context) => const AnotherUserProfile(),
           MyRoutes.notifications: (context) => const Notifications(),
         },

@@ -5,8 +5,6 @@ import 'package:sociolite/models/dummy_user.dart';
 import 'package:sociolite/utils/global_variables.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/main_user.dart';
-
 class FriendService {
   static const _baseUrl = "${Globals.apiUrl}/friend/";
 
