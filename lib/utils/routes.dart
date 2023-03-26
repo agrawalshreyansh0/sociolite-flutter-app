@@ -11,5 +11,5 @@ class MyRoutes {
   static String friendRequests = "/friendRequests";
   static String anotherUserProfile = "/anotherUserProfile";
   static String friends = "/friends";
-  static String chat = '/chat'; 
+  static String chat = '/chat';
 }

@@ -10,7 +10,6 @@ import 'package:sociolite/models/main_user.dart';
 import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/utils/global_variables.dart';
 import 'package:sociolite/utils/routes.dart';
-
 import '../models/user.dart';
 
 class UserService {

@@ -1,6 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sociolite/models/dummy_user.dart';
+import 'package:sociolite/models/message.dart';
+import 'package:sociolite/providers/main_user_provider.dart';
+import 'package:sociolite/services/chat_services.dart';
 import 'package:sociolite/utils/global_variables.dart';
 // ignore: library_prefixes
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -13,9 +17,15 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  List<String> chat = [];
+  List<Message> chat = [];
   String userEmail = Globals.userEmail;
   String chatroom = "whatever";
+  int page = 1;
+  int limit = 20;
+  String recieverId = '';
+  String senderId = Globals.userId;
+  bool first = true;
+  ScrollController scroll = ScrollController();
 
   TextEditingController messageController = TextEditingController();
   IO.Socket socket = IO.io("http://192.168.1.9:5001", <String, dynamic>{
@@ -29,7 +39,9 @@ class _ChatPageState extends State<ChatPage> {
       "user_email": userEmail,
       "chatroom": chatroom
     });
-    // chat.add(messageController.text);
+    ChatService.sendMessage(
+        senderId, recieverId, chatroom, messageController.text);
+    messageController.text = '';
   }
 
   connect() {
@@ -41,13 +53,16 @@ class _ChatPageState extends State<ChatPage> {
       log('connected to the chat server');
 
       socket.on('user_joined', (data) {
-        log(data.toString()); 
+        log(data.toString());
       });
 
       socket.on('recieve_message', (data) {
         log(data.toString());
-        chat.add(data['message'].toString());
-        log(chat.toString());
+        Message newmessage = Message(
+            senderId: senderId,
+            recieverId: recieverId,
+            text: data['message'].toString());
+        chat = [newmessage, ...chat];
         setState(() {});
       });
     });
@@ -56,7 +71,27 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
+    scroll.addListener(_scrollListner);
+  }
+
+  _scrollListner() {
+    if (scroll.position.pixels == scroll.position.maxScrollExtent) {
+      fetchChats();
+    }
+  }
+
+  getChatRoom(String user2) async {
+    chatroom = await ChatService.getChatRoom(Globals.userId, user2);
     connect();
+    fetchChats();
+  }
+
+  fetchChats() async {
+    List<Message> newMessages =
+        await ChatService.getChats(chatroom, limit, page);
+    chat.addAll(newMessages);
+    page++;
+    setState(() {});
   }
 
   @override
@@ -67,6 +102,11 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     DummyUser user = ModalRoute.of(context)!.settings.arguments as DummyUser;
+    if (first) {
+      getChatRoom(user.id);
+      recieverId = user.id;
+      first = false;
+    }
 
     return Material(
       child: SafeArea(
@@ -77,11 +117,21 @@ class _ChatPageState extends State<ChatPage> {
             height: 500,
             color: Colors.red,
             child: ListView.builder(
+                controller: scroll,
                 itemCount: chat.length,
                 itemBuilder: (BuildContext context, index) {
-                  return Text(
-                    chat[index],
-                    style: const TextStyle(fontSize: 30),
+                  return Row(
+                    children: [
+                      Text(
+                        chat[index].text,
+                        style: const TextStyle(fontSize: 30),
+                      ),
+                      Text(chat[index].senderId == senderId
+                          ? Provider.of<UserProvider>(context, listen: false)
+                              .user
+                              .name
+                          : user.name)
+                    ],
                   );
                 }),
           ),
