@@ -28,7 +28,7 @@ class _ChatPageState extends State<ChatPage> {
   ScrollController scroll = ScrollController();
 
   TextEditingController messageController = TextEditingController();
-  IO.Socket socket = IO.io("http://192.168.1.9:5001", <String, dynamic>{
+  IO.Socket socket = IO.io("http://3.110.30.120:5001", <String, dynamic>{
     "transports": ["websocket"],
     "autoConnect": false
   });

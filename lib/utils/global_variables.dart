@@ -1,5 +1,5 @@
 class Globals {
-  static const String apiUrl = "https://sociolite.cyclic.app/";
+  static const String apiUrl = "http://3.110.30.120:5000";
   static String userId = "";
   static String userEmail = ''; 
   static const String cloudinaryCloudName = "dirlbwstv";
