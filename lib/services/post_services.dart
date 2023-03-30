@@ -7,7 +7,7 @@ import 'package:sociolite/utils/global_variables.dart';
 import '../models/post.dart';
 
 class PostService {
-  static const _baseUrl = "${Globals.apiUrl}";
+  static const _baseUrl = Globals.apiUrl;
 
   static Future<List<Post>> getAllPosts(int limit, int page) async {
     Uri responseUri =

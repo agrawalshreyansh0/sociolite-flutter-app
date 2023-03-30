@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sociolite/models/dummy_user.dart';
 import 'package:sociolite/models/message.dart';
-import 'package:sociolite/providers/main_user_provider.dart';
 import 'package:sociolite/services/chat_services.dart';
 import 'package:sociolite/utils/global_variables.dart';
 // ignore: library_prefixes
@@ -118,19 +116,17 @@ class _ChatPageState extends State<ChatPage> {
             color: Colors.red,
             child: ListView.builder(
                 controller: scroll,
+                reverse: true,
                 itemCount: chat.length,
                 itemBuilder: (BuildContext context, index) {
+                  var message = chat[index];
                   return Row(
                     children: [
+                      message.senderId == recieverId ? Container() : const Spacer(),
                       Text(
-                        chat[index].text,
+                        message.text,
                         style: const TextStyle(fontSize: 30),
                       ),
-                      Text(chat[index].senderId == senderId
-                          ? Provider.of<UserProvider>(context, listen: false)
-                              .user
-                              .name
-                          : user.name)
                     ],
                   );
                 }),

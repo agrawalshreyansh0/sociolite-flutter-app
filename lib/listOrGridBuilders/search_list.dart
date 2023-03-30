@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sociolite/models/user.dart';
 import 'package:sociolite/providers/search_provider.dart';
+import 'package:sociolite/utils/global_variables.dart';
 
 import '../utils/routes.dart';
 
@@ -32,6 +33,7 @@ class _SearchUserListState extends State<SearchUserList> {
   Widget build(BuildContext context) {
     SearchProvider searchProvider = Provider.of<SearchProvider>(context);
     List<User> users = searchProvider.getAllUsers();
+    users.removeWhere((element) => element.id==Globals.userId); 
     return ListView.builder(
         controller: scrolllistController,
         itemCount: users.length,

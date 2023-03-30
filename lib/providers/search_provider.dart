@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:sociolite/services/auth_services.dart';
 
@@ -21,7 +20,7 @@ class SearchProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  List<User> getAllUsers() { 
-    return [...users]; 
+  List<User> getAllUsers() {
+    return [...users];
   }
 }
